@@ -1,117 +1,123 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Custom component styles - plain CSS (no @tailwind/@apply) */
 
 @layer components {
-  /* Base typography scale */
-  .font-display-lg { @apply text-5xl sm:text-6xl font-black tracking-tight; }
-  .font-display-lg-mobile { @apply text-3xl sm:text-4xl font-black tracking-tight; }
-  .font-headline-md { @apply text-xl sm:text-2xl font-bold tracking-tight; }
-  .font-body-md { @apply text-base sm:text-lg; }
-  .font-body-sm { @apply text-sm; }
-  .font-label-mono { @apply text-xs font-mono; }
-
-  .text-display-lg { @apply text-4xl; }
-  .text-display-lg-mobile { @apply text-2xl; }
-  .text-headline-md { @apply text-xl; }
-  .text-body-md { @apply text-base; }
-  .text-body-sm { @apply text-sm; }
-  .text-label-mono { @apply text-xs; }
-
-  /* Color tokens */
-  .text-on-surface { @apply text-gray-900; }
-  .text-on-surface-variant { @apply text-gray-600; }
-  .text-on-primary { @apply text-white; }
-  .text-primary { @apply text-blue-600; }
-  .text-secondary { @apply text-purple-600; }
-  .text-outline { @apply text-gray-400; }
-  .text-outline-variant { @apply text-gray-300; }
-
-  .bg-primary { @apply bg-blue-600; }
-  .bg-secondary { @apply bg-purple-600; }
-  .bg-surface { @apply bg-white; }
-  .bg-surface-container { @apply bg-gray-100; }
-  .bg-surface-container-high { @apply bg-gray-200; }
-  .bg-surface-container-low { @apply bg-gray-50; }
-  .bg-surface-container-lowest { @apply bg-white; }
-  .bg-on-primary { @apply bg-blue-700; }
-  .bg-on-surface { @apply bg-gray-900; }
-
-  .border-outline { @apply border-gray-300; }
-  .border-outline-variant { @apply border-gray-200; }
-
   /* Glass effects */
   .glass-effect {
-    @apply bg-white/80 backdrop-blur-lg;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
   }
   .glass-panel {
-    @apply bg-white/90 backdrop-blur-xl border border-white/50 shadow-lg;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
   .glass-card {
-    @apply bg-white/95 backdrop-blur-xl border border-gray-100 shadow-xl;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(24px);
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
 
   /* Buttons */
   .gradient-btn {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold
-           hover:from-blue-700 hover:to-purple-700 transition-all duration-300
-           shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30;
+    background: linear-gradient(to right, #2563eb, #9333ea);
+    color: white;
+    font-weight: 700;
+    transition: all 0.3s;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.25);
+  }
+  .gradient-btn:hover {
+    background: linear-gradient(to right, #1d4ed8, #7e22ce);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
   }
   .btn-glow {
-    @apply shadow-[0_0_20px_rgba(0,82,255,0.4)] hover:shadow-[0_0_30px_rgba(0,82,255,0.6)];
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+  }
+  .btn-glow:hover {
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.6);
   }
 
   /* Inputs */
   .custom-input {
-    @apply bg-white border border-gray-200 text-gray-900 placeholder-gray-400
-           focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
-           transition-all duration-200;
+    background: white;
+    border: 1px solid #e5e7eb;
+    color: #111827;
+    transition: all 0.2s;
+  }
+  .custom-input::placeholder {
+    color: #9ca3af;
+  }
+  .custom-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    outline: none;
   }
   .cyber-input {
-    @apply bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400
-           focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
-           transition-all duration-200;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    color: #111827;
+    transition: all 0.2s;
+  }
+  .cyber-input::placeholder {
+    color: #9ca3af;
+  }
+  .cyber-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    outline: none;
   }
 
   /* Animations */
   .spring-transition {
-    @apply transition-all duration-300 ease-out;
+    transition: all 0.3s ease-out;
   }
   .floating-element {
-    @apply animate-pulse;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   /* Ambient background */
   .ambient-bg {
-    @apply fixed inset-0 pointer-events-none overflow-hidden z-0;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
   }
   .ambient-orb {
-    @apply absolute rounded-full blur-3xl opacity-20;
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(64px);
+    opacity: 0.2;
   }
   .orb-1 {
-    @apply w-96 h-96 bg-blue-500;
+    width: 24rem;
+    height: 24rem;
+    background: #3b82f6;
     animation: float 20s ease-in-out infinite;
   }
   .orb-2 {
-    @apply w-72 h-72 bg-purple-500;
+    width: 18rem;
+    height: 18rem;
+    background: #a855f7;
     animation: float 25s ease-in-out infinite reverse;
   }
   .orb-3 {
-    @apply w-48 h-48 bg-pink-500;
+    width: 12rem;
+    height: 12rem;
+    background: #ec4899;
     animation: float 18s ease-in-out infinite;
   }
 
-  /* Stack spacing */
-  .mb-stack-gap { @apply mb-8; }
-  .mt-stack-gap { @apply mt-8; }
-  .p-stack-gap { @apply p-8; }
-  .py-stack-gap { @apply py-8; }
-  .mb-gutter { @apply mb-6; }
-  .mt-unit { @apply mt-2; }
-
-  /* Margins */
-  .px-margin-mobile { @apply px-4; }
-  .px-margin-desktop { @apply px-8 lg:px-16; }
+  /* Spacing utilities */
+  .mb-stack-gap { margin-bottom: 2rem; }
+  .mt-stack-gap { margin-top: 2rem; }
+  .p-stack-gap { padding: 2rem; }
+  .py-stack-gap { padding-top: 2rem; padding-bottom: 2rem; }
+  .mb-gutter { margin-bottom: 1.5rem; }
+  .mt-unit { margin-top: 0.5rem; }
 }
 
 @keyframes float {
@@ -119,6 +125,11 @@
   25% { transform: translate(20px, 20px); }
   50% { transform: translate(-15px, 30px); }
   75% { transform: translate(25px, -10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 /* RTL adjustments */
