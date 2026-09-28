@@ -1,20 +1,27 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
     """Extended user model with profile fields."""
+
     phone = models.CharField(_("شماره تلفن"), max_length=15, blank=True)
     avatar = models.ImageField(_("آواتار"), upload_to="avatars/", blank=True, null=True)
     email_verified = models.BooleanField(_("ایمیل تایید شده"), default=False)
     phone_verified = models.BooleanField(_("تلفن تایید شده"), default=False)
     two_factor_enabled = models.BooleanField(_("احراز هویت دو مرحله‌ای"), default=False)
-    two_factor_secret = models.CharField(_("مخفی دو مرحله‌ای"), max_length=32, blank=True)
+    two_factor_secret = models.CharField(
+        _("مخفی دو مرحله‌ای"), max_length=32, blank=True
+    )
     backup_codes = models.JSONField(_("کدهای پشتیبان 2FA"), default=list, blank=True)
-    last_login_ip = models.GenericIPAddressField(_("آخرین IP ورود"), null=True, blank=True)
-    failed_login_attempts = models.PositiveIntegerField(_("تلاش‌های ناموفق ورود"), default=0)
+    last_login_ip = models.GenericIPAddressField(
+        _("آخرین IP ورود"), null=True, blank=True
+    )
+    failed_login_attempts = models.PositiveIntegerField(
+        _("تلاش‌های ناموفق ورود"), default=0
+    )
     locked_until = models.DateTimeField(_("قفل تا"), null=True, blank=True)
     password_changed_at = models.DateTimeField(_("تاریخ تغییر رمز"), auto_now_add=True)
     created_at = models.DateTimeField(_("تاریخ ثبت نام"), auto_now_add=True)
@@ -42,24 +49,34 @@ class User(AbstractUser):
         self.failed_login_attempts += 1
         if self.failed_login_attempts >= 5:
             self.locked_until = timezone.now() + timezone.timedelta(minutes=30)
-        self.save(update_fields=['failed_login_attempts', 'locked_until'])
+        self.save(update_fields=["failed_login_attempts", "locked_until"])
 
     def record_successful_login(self, ip=None):
         self.failed_login_attempts = 0
         self.locked_until = None
         self.last_login_ip = ip
-        self.save(update_fields=['failed_login_attempts', 'locked_until', 'last_login_ip'])
+        self.save(
+            update_fields=["failed_login_attempts", "locked_until", "last_login_ip"]
+        )
 
 
 class LoginAttempt(models.Model):
     """Track login attempts for security auditing and brute-force detection."""
+
     class Status(models.TextChoices):
         SUCCESS = "success", _("موفق")
         FAILED = "failed", _("ناموفق")
         BLOCKED = "blocked", _("مسدود شده")
         LOCKED = "locked", _("حساب قفل شده")
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="login_attempts", verbose_name=_("کاربر"), null=True, blank=True)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="login_attempts",
+        verbose_name=_("کاربر"),
+        null=True,
+        blank=True,
+    )
     username = models.CharField(_("نام کاربری"), max_length=150, db_index=True)
     ip_address = models.GenericIPAddressField(_("آدرس IP"))
     user_agent = models.TextField(_("User Agent"), blank=True)
@@ -83,9 +100,12 @@ class LoginAttempt(models.Model):
 
 class Category(models.Model):
     """Product categories (Gaming, AI, VPN, Apps, etc.)"""
+
     name = models.CharField(_("نام دسته‌بندی"), max_length=100, unique=True)
     slug = models.SlugField(_("اسلاگ"), max_length=100, unique=True)
-    icon = models.CharField(_("آیکون"), max_length=50, blank=True, help_text=_("Material Symbols name"))
+    icon = models.CharField(
+        _("آیکون"), max_length=50, blank=True, help_text=_("Material Symbols name")
+    )
     description = models.TextField(_("توضیحات"), blank=True)
     order = models.PositiveIntegerField(_("ترتیب نمایش"), default=0)
     is_active = models.BooleanField(_("فعال"), default=True)
@@ -102,6 +122,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     """Digital products/services for sale."""
+
     class Type(models.TextChoices):
         GIFT_CARD = "gift_card", _("گیفت کارت")
         SUBSCRIPTION = "subscription", _("اشتراک")
@@ -116,18 +137,45 @@ class Product(models.Model):
 
     name = models.CharField(_("نام محصول"), max_length=200)
     slug = models.SlugField(_("اسلاگ"), max_length=200, unique=True)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="products", verbose_name=_("دسته‌بندی"))
-    type = models.CharField(_("نوع محصول"), max_length=20, choices=Type.choices, default=Type.SUBSCRIPTION)
-    status = models.CharField(_("وضعیت"), max_length=20, choices=Status.choices, default=Status.DRAFT)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.PROTECT,
+        related_name="products",
+        verbose_name=_("دسته‌بندی"),
+    )
+    type = models.CharField(
+        _("نوع محصول"), max_length=20, choices=Type.choices, default=Type.SUBSCRIPTION
+    )
+    status = models.CharField(
+        _("وضعیت"), max_length=20, choices=Status.choices, default=Status.DRAFT
+    )
     description = models.TextField(_("توضیحات کامل"))
     short_description = models.TextField(_("توضیحات کوتاه"), max_length=500, blank=True)
-    logo = models.ImageField(_("لوگو"), upload_to="products/logos/", blank=True, null=True)
-    thumbnail = models.ImageField(_("تصویر کاور"), upload_to="products/thumbnails/", blank=True, null=True)
+    logo = models.ImageField(
+        _("لوگو"), upload_to="products/logos/", blank=True, null=True
+    )
+    thumbnail = models.ImageField(
+        _("تصویر کاور"), upload_to="products/thumbnails/", blank=True, null=True
+    )
     price = models.DecimalField(_("قیمت (تومان)"), max_digits=12, decimal_places=0)
-    original_price = models.DecimalField(_("قیمت اصلی (تومان)"), max_digits=12, decimal_places=0, blank=True, null=True)
-    duration_days = models.PositiveIntegerField(_("مدت اعتبار (روز)"), blank=True, null=True, help_text=_("برای اشتراک‌ها"))
-    features = models.JSONField(_("ویژگی‌ها"), default=list, blank=True, help_text=_("لیست ویژگی‌ها به صورت JSON"))
-    metadata = models.JSONField(_("اطلاعات تکمیلی"), default=dict, blank=True, help_text=_("اطلاعات اضافه مثل ریجن، نسخه، و غیره"))
+    original_price = models.DecimalField(
+        _("قیمت اصلی (تومان)"), max_digits=12, decimal_places=0, blank=True, null=True
+    )
+    duration_days = models.PositiveIntegerField(
+        _("مدت اعتبار (روز)"), blank=True, null=True, help_text=_("برای اشتراک‌ها")
+    )
+    features = models.JSONField(
+        _("ویژگی‌ها"),
+        default=list,
+        blank=True,
+        help_text=_("لیست ویژگی‌ها به صورت JSON"),
+    )
+    metadata = models.JSONField(
+        _("اطلاعات تکمیلی"),
+        default=dict,
+        blank=True,
+        help_text=_("اطلاعات اضافه مثل ریجن، نسخه، و غیره"),
+    )
     stock = models.PositiveIntegerField(_("موجودی"), default=0)
     sold_count = models.PositiveIntegerField(_("تعداد فروش"), default=0)
     is_featured = models.BooleanField(_("محصول ویژه"), default=False)
@@ -160,12 +208,23 @@ class Product(models.Model):
 
 class ProductVariant(models.Model):
     """Product variants (e.g., different regions, durations, tiers)."""
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="variants", verbose_name=_("محصول"))
+
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="variants",
+        verbose_name=_("محصول"),
+    )
     name = models.CharField(_("نام تنوع"), max_length=100)
     sku = models.CharField(_("SKU"), max_length=50, unique=True)
     price = models.DecimalField(_("قیمت (تومان)"), max_digits=12, decimal_places=0)
     stock = models.PositiveIntegerField(_("موجودی"), default=0)
-    metadata = models.JSONField(_("اطلاعات تکمیلی"), default=dict, blank=True, help_text=_("مثل ریجن، نسخه، و غیره"))
+    metadata = models.JSONField(
+        _("اطلاعات تکمیلی"),
+        default=dict,
+        blank=True,
+        help_text=_("مثل ریجن، نسخه، و غیره"),
+    )
     is_active = models.BooleanField(_("فعال"), default=True)
     created_at = models.DateTimeField(_("تاریخ ایجاد"), auto_now_add=True)
     updated_at = models.DateTimeField(_("تاریخ بروزرسانی"), auto_now=True)
@@ -181,6 +240,7 @@ class ProductVariant(models.Model):
 
 class Order(models.Model):
     """Customer orders."""
+
     class Status(models.TextChoices):
         PENDING = "pending", _("در انتظار پرداخت")
         PAID = "paid", _("پرداخت شده")
@@ -195,12 +255,20 @@ class Order(models.Model):
         CARD = "card", _("کارت بانکی")
         GATEWAY = "gateway", _("درگاه پرداخت")
 
-    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="orders", verbose_name=_("کاربر"))
-    status = models.CharField(_("وضعیت"), max_length=20, choices=Status.choices, default=Status.PENDING)
-    payment_method = models.CharField(_("روش پرداخت"), max_length=20, choices=PaymentMethod.choices)
+    user = models.ForeignKey(
+        User, on_delete=models.PROTECT, related_name="orders", verbose_name=_("کاربر")
+    )
+    status = models.CharField(
+        _("وضعیت"), max_length=20, choices=Status.choices, default=Status.PENDING
+    )
+    payment_method = models.CharField(
+        _("روش پرداخت"), max_length=20, choices=PaymentMethod.choices
+    )
     tracking_code = models.CharField(_("کد پیگیری"), max_length=20, unique=True)
     subtotal = models.DecimalField(_("مجموع جزئی"), max_digits=12, decimal_places=0)
-    discount = models.DecimalField(_("تخفیف"), max_digits=12, decimal_places=0, default=0)
+    discount = models.DecimalField(
+        _("تخفیف"), max_digits=12, decimal_places=0, default=0
+    )
     tax = models.DecimalField(_("مالیات"), max_digits=12, decimal_places=0, default=0)
     total = models.DecimalField(_("مجموع"), max_digits=12, decimal_places=0)
     paid_at = models.DateTimeField(_("تاریخ پرداخت"), null=True, blank=True)
@@ -223,6 +291,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     """Individual items within an order."""
+
     class DeliveryType(models.TextChoices):
         CODE = "code", _("کد")
         FILE = "file", _("فایل")
@@ -230,14 +299,38 @@ class OrderItem(models.Model):
         LINK = "link", _("لینک")
         MANUAL = "manual", _("دستی")
 
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items", verbose_name=_("سفارش"))
-    product = models.ForeignKey(Product, on_delete=models.PROTECT, related_name="order_items", verbose_name=_("محصول"))
-    variant = models.ForeignKey(ProductVariant, on_delete=models.PROTECT, related_name="order_items", verbose_name=_("تنوع"), null=True, blank=True)
+    order = models.ForeignKey(
+        Order, on_delete=models.CASCADE, related_name="items", verbose_name=_("سفارش")
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.PROTECT,
+        related_name="order_items",
+        verbose_name=_("محصول"),
+    )
+    variant = models.ForeignKey(
+        ProductVariant,
+        on_delete=models.PROTECT,
+        related_name="order_items",
+        verbose_name=_("تنوع"),
+        null=True,
+        blank=True,
+    )
     quantity = models.PositiveIntegerField(_("تعداد"), default=1)
     unit_price = models.DecimalField(_("قیمت واحد"), max_digits=12, decimal_places=0)
     total_price = models.DecimalField(_("قیمت کل"), max_digits=12, decimal_places=0)
-    delivery_type = models.CharField(_("نوع تحویل"), max_length=10, choices=DeliveryType.choices, default=DeliveryType.CODE)
-    delivery_content = models.JSONField(_("محتویات تحویل"), default=dict, blank=True, help_text=_("کدها، فایل‌ها، اطلاعات اکانت و غیره"))
+    delivery_type = models.CharField(
+        _("نوع تحویل"),
+        max_length=10,
+        choices=DeliveryType.choices,
+        default=DeliveryType.CODE,
+    )
+    delivery_content = models.JSONField(
+        _("محتویات تحویل"),
+        default=dict,
+        blank=True,
+        help_text=_("کدها، فایل‌ها، اطلاعات اکانت و غیره"),
+    )
     is_delivered = models.BooleanField(_("تحویل داده شده"), default=False)
     delivered_at = models.DateTimeField(_("تاریخ تحویل"), null=True, blank=True)
     created_at = models.DateTimeField(_("تاریخ ایجاد"), auto_now_add=True)
@@ -252,16 +345,36 @@ class OrderItem(models.Model):
 
 class Subscription(models.Model):
     """User subscriptions for recurring products."""
+
     class Status(models.TextChoices):
         ACTIVE = "active", _("فعال")
         EXPIRED = "expired", _("منقضی شده")
         CANCELLED = "cancelled", _("لغو شده")
         PENDING = "pending", _("در انتظار فعال‌سازی")
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="subscriptions", verbose_name=_("کاربر"))
-    product = models.ForeignKey(Product, on_delete=models.PROTECT, related_name="subscriptions", verbose_name=_("محصول"))
-    variant = models.ForeignKey(ProductVariant, on_delete=models.PROTECT, related_name="subscriptions", verbose_name=_("تنوع"), null=True, blank=True)
-    status = models.CharField(_("وضعیت"), max_length=20, choices=Status.choices, default=Status.PENDING)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="subscriptions",
+        verbose_name=_("کاربر"),
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.PROTECT,
+        related_name="subscriptions",
+        verbose_name=_("محصول"),
+    )
+    variant = models.ForeignKey(
+        ProductVariant,
+        on_delete=models.PROTECT,
+        related_name="subscriptions",
+        verbose_name=_("تنوع"),
+        null=True,
+        blank=True,
+    )
+    status = models.CharField(
+        _("وضعیت"), max_length=20, choices=Status.choices, default=Status.PENDING
+    )
     starts_at = models.DateTimeField(_("تاریخ شروع"), auto_now_add=True)
     expires_at = models.DateTimeField(_("تاریخ انقضا"))
     auto_renew = models.BooleanField(_("تمدید خودکار"), default=False)
@@ -293,9 +406,16 @@ class Subscription(models.Model):
 
 class Wallet(models.Model):
     """User wallet for balance management."""
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="wallet", verbose_name=_("کاربر"))
-    balance = models.DecimalField(_("موجودی"), max_digits=12, decimal_places=0, default=0)
-    blocked_balance = models.DecimalField(_("موجودی مسدود"), max_digits=12, decimal_places=0, default=0)
+
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="wallet", verbose_name=_("کاربر")
+    )
+    balance = models.DecimalField(
+        _("موجودی"), max_digits=12, decimal_places=0, default=0
+    )
+    blocked_balance = models.DecimalField(
+        _("موجودی مسدود"), max_digits=12, decimal_places=0, default=0
+    )
     created_at = models.DateTimeField(_("تاریخ ایجاد"), auto_now_add=True)
     updated_at = models.DateTimeField(_("تاریخ بروزرسانی"), auto_now=True)
 
@@ -313,6 +433,7 @@ class Wallet(models.Model):
 
 class WalletTransaction(models.Model):
     """Wallet transactions."""
+
     class Type(models.TextChoices):
         DEPOSIT = "deposit", _("واریز")
         WITHDRAWAL = "withdrawal", _("برداشت")
@@ -326,12 +447,24 @@ class WalletTransaction(models.Model):
         FAILED = "failed", _("ناموفق")
         CANCELLED = "cancelled", _("لغو شده")
 
-    wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE, related_name="transactions", verbose_name=_("کیف پول"))
+    wallet = models.ForeignKey(
+        Wallet,
+        on_delete=models.CASCADE,
+        related_name="transactions",
+        verbose_name=_("کیف پول"),
+    )
     type = models.CharField(_("نوع تراکنش"), max_length=20, choices=Type.choices)
-    status = models.CharField(_("وضعیت"), max_length=20, choices=Status.choices, default=Status.PENDING)
+    status = models.CharField(
+        _("وضعیت"), max_length=20, choices=Status.choices, default=Status.PENDING
+    )
     amount = models.DecimalField(_("مبلغ"), max_digits=12, decimal_places=0)
     description = models.TextField(_("توضیحات"), blank=True)
-    reference_id = models.CharField(_("شناسه مرجع"), max_length=100, blank=True, help_text=_("شناسه سفارش، پرداخت، و غیره"))
+    reference_id = models.CharField(
+        _("شناسه مرجع"),
+        max_length=100,
+        blank=True,
+        help_text=_("شناسه سفارش، پرداخت، و غیره"),
+    )
     created_at = models.DateTimeField(_("تاریخ ایجاد"), auto_now_add=True)
     completed_at = models.DateTimeField(_("تاریخ تکمیل"), null=True, blank=True)
 
@@ -346,11 +479,14 @@ class WalletTransaction(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.wallet.user.username} - {self.get_type_display()} - {self.amount:,}"
+        return (
+            f"{self.wallet.user.username} - {self.get_type_display()} - {self.amount:,}"
+        )
 
 
 class Coupon(models.Model):
     """Discount coupons."""
+
     class DiscountType(models.TextChoices):
         PERCENT = "percent", _("درصدی")
         FIXED = "fixed", _("مبلغ ثابت")
@@ -358,18 +494,37 @@ class Coupon(models.Model):
     code = models.CharField(_("کد کوپن"), max_length=50, unique=True)
     name = models.CharField(_("نام کوپن"), max_length=100)
     description = models.TextField(_("توضیحات"), blank=True)
-    discount_type = models.CharField(_("نوع تخفیف"), max_length=10, choices=DiscountType.choices)
-    discount_value = models.DecimalField(_("مقدار تخفیف"), max_digits=10, decimal_places=0)
-    min_order_amount = models.DecimalField(_("حداقل مبلغ سفارش"), max_digits=12, decimal_places=0, default=0)
-    max_discount_amount = models.DecimalField(_("حداکثر تخفیف"), max_digits=12, decimal_places=0, blank=True, null=True)
-    usage_limit = models.PositiveIntegerField(_("محدودیت استفاده کل"), default=0, help_text=_("0 = نامحدود"))
-    usage_limit_per_user = models.PositiveIntegerField(_("محدودیت استفاده هر کاربر"), default=1)
+    discount_type = models.CharField(
+        _("نوع تخفیف"), max_length=10, choices=DiscountType.choices
+    )
+    discount_value = models.DecimalField(
+        _("مقدار تخفیف"), max_digits=10, decimal_places=0
+    )
+    min_order_amount = models.DecimalField(
+        _("حداقل مبلغ سفارش"), max_digits=12, decimal_places=0, default=0
+    )
+    max_discount_amount = models.DecimalField(
+        _("حداکثر تخفیف"), max_digits=12, decimal_places=0, blank=True, null=True
+    )
+    usage_limit = models.PositiveIntegerField(
+        _("محدودیت استفاده کل"), default=0, help_text=_("0 = نامحدود")
+    )
+    usage_limit_per_user = models.PositiveIntegerField(
+        _("محدودیت استفاده هر کاربر"), default=1
+    )
     used_count = models.PositiveIntegerField(_("تعداد استفاده شده"), default=0)
     valid_from = models.DateTimeField(_("اعتبار از"), default=timezone.now)
     valid_until = models.DateTimeField(_("اعتبار تا"))
     is_active = models.BooleanField(_("فعال"), default=True)
-    applicable_categories = models.ManyToManyField(Category, related_name="coupons", blank=True, verbose_name=_("دسته‌بندی‌های شامل"))
-    applicable_products = models.ManyToManyField(Product, related_name="coupons", blank=True, verbose_name=_("محصولات شامل"))
+    applicable_categories = models.ManyToManyField(
+        Category,
+        related_name="coupons",
+        blank=True,
+        verbose_name=_("دسته‌بندی‌های شامل"),
+    )
+    applicable_products = models.ManyToManyField(
+        Product, related_name="coupons", blank=True, verbose_name=_("محصولات شامل")
+    )
     created_at = models.DateTimeField(_("تاریخ ایجاد"), auto_now_add=True)
     updated_at = models.DateTimeField(_("تاریخ بروزرسانی"), auto_now=True)
 
@@ -391,11 +546,20 @@ class Coupon(models.Model):
             return False, "محدودیت استفاده از کوپن تمام شده"
         if cart_total < self.min_order_amount:
             return False, f"حداقل مبلغ سفارش {self.min_order_amount:,} تومان است"
-        if CouponUsage.objects.filter(coupon=self, user=user).count() >= self.usage_limit_per_user:
+        if (
+            CouponUsage.objects.filter(coupon=self, user=user).count()
+            >= self.usage_limit_per_user
+        ):
             return False, "شما از حد استفاده از این کوپن گذشته‌اید"
-        if self.applicable_categories.exists() and not self.applicable_categories.filter(products__in=[]).exists():
+        if (
+            self.applicable_categories.exists()
+            and not self.applicable_categories.filter(products__in=[]).exists()
+        ):
             pass  # Skip category check if no categories specified
-        if self.applicable_products.exists() and not self.applicable_products.filter(id__in=[]).exists():
+        if (
+            self.applicable_products.exists()
+            and not self.applicable_products.filter(id__in=[]).exists()
+        ):
             pass  # Skip product check if no products specified
         return True, ""
 
@@ -410,10 +574,25 @@ class Coupon(models.Model):
 
 class CouponUsage(models.Model):
     """Track coupon usage per user."""
-    coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE, related_name="usages", verbose_name=_("کوپن"))
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="coupon_usages", verbose_name=_("کاربر"))
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="coupon_usages", verbose_name=_("سفارش"))
-    discount_amount = models.DecimalField(_("مبلغ تخفیف"), max_digits=12, decimal_places=0)
+
+    coupon = models.ForeignKey(
+        Coupon, on_delete=models.CASCADE, related_name="usages", verbose_name=_("کوپن")
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="coupon_usages",
+        verbose_name=_("کاربر"),
+    )
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        related_name="coupon_usages",
+        verbose_name=_("سفارش"),
+    )
+    discount_amount = models.DecimalField(
+        _("مبلغ تخفیف"), max_digits=12, decimal_places=0
+    )
     created_at = models.DateTimeField(_("تاریخ استفاده"), auto_now_add=True)
 
     class Meta:
@@ -427,7 +606,13 @@ class CouponUsage(models.Model):
 
 class Address(models.Model):
     """User addresses for physical deliveries."""
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="addresses", verbose_name=_("کاربر"))
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="addresses",
+        verbose_name=_("کاربر"),
+    )
     title = models.CharField(_("عنوان"), max_length=100)
     full_name = models.CharField(_("نام کامل"), max_length=100)
     phone = models.CharField(_("شماره تماس"), max_length=15)
@@ -450,6 +635,7 @@ class Address(models.Model):
 
 class Notification(models.Model):
     """User notifications."""
+
     class Type(models.TextChoices):
         ORDER = "order", _("سفارش")
         PAYMENT = "payment", _("پرداخت")
@@ -458,7 +644,12 @@ class Notification(models.Model):
         SYSTEM = "system", _("سیستم")
         PROMOTION = "promotion", _("تبلیغات")
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notifications", verbose_name=_("کاربر"))
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="notifications",
+        verbose_name=_("کاربر"),
+    )
     type = models.CharField(_("نوع"), max_length=20, choices=Type.choices)
     title = models.CharField(_("عنوان"), max_length=200)
     message = models.TextField(_("پیام"))
@@ -481,6 +672,7 @@ class Notification(models.Model):
 
 class SiteSettings(models.Model):
     """Global site settings (singleton)."""
+
     site_name = models.CharField(_("نام سایت"), max_length=100, default="Digital Shop")
     site_description = models.TextField(_("توضیحات سایت"), blank=True)
     contact_email = models.EmailField(_("ایمیل تماس"), blank=True)
@@ -493,7 +685,9 @@ class SiteSettings(models.Model):
     maintenance_mode = models.BooleanField(_("حالت تعمیرات"), default=False)
     maintenance_message = models.TextField(_("پیام تعمیرات"), blank=True)
     social_links = models.JSONField(_("شبکه‌های اجتماعی"), default=dict, blank=True)
-    free_shipping_threshold = models.DecimalField(_("آستانه ارسال رایگان"), max_digits=12, decimal_places=0, default=1000000)
+    free_shipping_threshold = models.DecimalField(
+        _("آستانه ارسال رایگان"), max_digits=12, decimal_places=0, default=1000000
+    )
     created_at = models.DateTimeField(_("تاریخ ایجاد"), auto_now_add=True)
     updated_at = models.DateTimeField(_("تاریخ بروزرسانی"), auto_now=True)
 

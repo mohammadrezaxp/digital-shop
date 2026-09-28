@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('shop', '0001_initial'),
+        ("shop", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='backup_codes',
-            field=models.JSONField(blank=True, default=list, verbose_name='کدهای پشتیبان 2FA'),
+            model_name="user",
+            name="backup_codes",
+            field=models.JSONField(
+                blank=True, default=list, verbose_name="کدهای پشتیبان 2FA"
+            ),
         ),
     ]

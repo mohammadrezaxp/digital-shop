@@ -1,16 +1,26 @@
-from rest_framework import serializers
 from django.utils import timezone
-from .models import (
-    User, Category, Product, ProductVariant, Order, OrderItem,
-    Subscription, Wallet, WalletTransaction, Coupon, CouponUsage,
-    Address, Notification, SiteSettings
-)
+from rest_framework import serializers
+
+from .models import (Address, Category, Coupon, CouponUsage, Notification,
+                     Order, OrderItem, Product, ProductVariant, SiteSettings,
+                     Subscription, User, Wallet, WalletTransaction)
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "email", "first_name", "last_name", "phone", "avatar", "email_verified", "date_joined", "last_login"]
+        fields = [
+            "id",
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "phone",
+            "avatar",
+            "email_verified",
+            "date_joined",
+            "last_login",
+        ]
         read_only_fields = ["id", "email_verified", "date_joined", "last_login"]
 
 
@@ -21,14 +31,28 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "username", "email", "first_name", "last_name", "phone", "avatar", "email_verified", "wallet_balance", "active_subscriptions_count", "orders_count"]
+        fields = [
+            "id",
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "phone",
+            "avatar",
+            "email_verified",
+            "wallet_balance",
+            "active_subscriptions_count",
+            "orders_count",
+        ]
         read_only_fields = ["id", "email_verified"]
 
     def get_wallet_balance(self, obj):
         return obj.wallet.balance if hasattr(obj, "wallet") else 0
 
     def get_active_subscriptions_count(self, obj):
-        return obj.subscriptions.filter(status=Subscription.Status.ACTIVE, expires_at__gt=timezone.now()).count()
+        return obj.subscriptions.filter(
+            status=Subscription.Status.ACTIVE, expires_at__gt=timezone.now()
+        ).count()
 
     def get_orders_count(self, obj):
         return obj.orders.count()
@@ -39,7 +63,16 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ["id", "name", "slug", "icon", "description", "order", "is_active", "products_count"]
+        fields = [
+            "id",
+            "name",
+            "slug",
+            "icon",
+            "description",
+            "order",
+            "is_active",
+            "products_count",
+        ]
 
 
 class ProductVariantSerializer(serializers.ModelSerializer):
@@ -47,7 +80,16 @@ class ProductVariantSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProductVariant
-        fields = ["id", "name", "sku", "price", "metadata", "stock", "is_active", "discount_percent"]
+        fields = [
+            "id",
+            "name",
+            "sku",
+            "price",
+            "metadata",
+            "stock",
+            "is_active",
+            "discount_percent",
+        ]
 
     def get_discount_percent(self, obj):
         return 0
@@ -61,7 +103,25 @@ class ProductListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ["id", "name", "slug", "category_name", "category_slug", "type", "status", "short_description", "logo", "thumbnail", "price", "original_price", "duration_days", "discount_percent", "is_in_stock", "is_featured", "sold_count"]
+        fields = [
+            "id",
+            "name",
+            "slug",
+            "category_name",
+            "category_slug",
+            "type",
+            "status",
+            "short_description",
+            "logo",
+            "thumbnail",
+            "price",
+            "original_price",
+            "duration_days",
+            "discount_percent",
+            "is_in_stock",
+            "is_featured",
+            "sold_count",
+        ]
 
     def get_discount_percent(self, obj):
         if obj.original_price and obj.original_price > obj.price:
@@ -77,7 +137,31 @@ class ProductDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ["id", "name", "slug", "category", "type", "status", "description", "short_description", "logo", "thumbnail", "price", "original_price", "duration_days", "features", "metadata", "stock", "sold_count", "is_featured", "variants", "discount_percent", "is_in_stock", "created_at", "updated_at"]
+        fields = [
+            "id",
+            "name",
+            "slug",
+            "category",
+            "type",
+            "status",
+            "description",
+            "short_description",
+            "logo",
+            "thumbnail",
+            "price",
+            "original_price",
+            "duration_days",
+            "features",
+            "metadata",
+            "stock",
+            "sold_count",
+            "is_featured",
+            "variants",
+            "discount_percent",
+            "is_in_stock",
+            "created_at",
+            "updated_at",
+        ]
 
     def get_discount_percent(self, obj):
         if obj.original_price and obj.original_price > obj.price:
@@ -92,18 +176,58 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = ["id", "product", "product_name", "product_slug", "variant", "variant_name", "quantity", "unit_price", "total_price", "delivery_content", "is_delivered", "delivered_at"]
+        fields = [
+            "id",
+            "product",
+            "product_name",
+            "product_slug",
+            "variant",
+            "variant_name",
+            "quantity",
+            "unit_price",
+            "total_price",
+            "delivery_content",
+            "is_delivered",
+            "delivered_at",
+        ]
 
 
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
     status_display = serializers.CharField(source="get_status_display", read_only=True)
-    payment_method_display = serializers.CharField(source="get_payment_method_display", read_only=True)
+    payment_method_display = serializers.CharField(
+        source="get_payment_method_display", read_only=True
+    )
 
     class Meta:
         model = Order
-        fields = ["id", "tracking_code", "status", "status_display", "payment_method", "payment_method_display", "subtotal", "discount", "tax", "total", "items", "paid_at", "created_at", "updated_at"]
-        read_only_fields = ["id", "tracking_code", "subtotal", "discount", "tax", "total", "paid_at", "created_at", "updated_at"]
+        fields = [
+            "id",
+            "tracking_code",
+            "status",
+            "status_display",
+            "payment_method",
+            "payment_method_display",
+            "subtotal",
+            "discount",
+            "tax",
+            "total",
+            "items",
+            "paid_at",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = [
+            "id",
+            "tracking_code",
+            "subtotal",
+            "discount",
+            "tax",
+            "total",
+            "paid_at",
+            "created_at",
+            "updated_at",
+        ]
 
 
 class OrderCreateSerializer(serializers.Serializer):
@@ -121,11 +245,25 @@ class SubscriptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Subscription
-        fields = ["id", "product", "variant", "status", "status_display", "starts_at", "expires_at", "auto_renew", "is_active", "days_remaining", "created_at"]
+        fields = [
+            "id",
+            "product",
+            "variant",
+            "status",
+            "status_display",
+            "starts_at",
+            "expires_at",
+            "auto_renew",
+            "is_active",
+            "days_remaining",
+            "created_at",
+        ]
 
 
 class WalletSerializer(serializers.ModelSerializer):
-    available_balance = serializers.DecimalField(max_digits=12, decimal_places=0, read_only=True)
+    available_balance = serializers.DecimalField(
+        max_digits=12, decimal_places=0, read_only=True
+    )
 
     class Meta:
         model = Wallet
@@ -139,7 +277,18 @@ class WalletTransactionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WalletTransaction
-        fields = ["id", "type", "type_display", "status", "status_display", "amount", "description", "reference_id", "created_at", "completed_at"]
+        fields = [
+            "id",
+            "type",
+            "type_display",
+            "status",
+            "status_display",
+            "amount",
+            "description",
+            "reference_id",
+            "created_at",
+            "completed_at",
+        ]
         read_only_fields = fields
 
 
@@ -148,7 +297,18 @@ class CouponSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Coupon
-        fields = ["id", "code", "type", "type_display", "value", "max_discount", "min_order_amount", "valid_from", "valid_until", "is_active"]
+        fields = [
+            "id",
+            "code",
+            "type",
+            "type_display",
+            "value",
+            "max_discount",
+            "min_order_amount",
+            "valid_from",
+            "valid_until",
+            "is_active",
+        ]
 
 
 class CouponValidateSerializer(serializers.Serializer):
@@ -160,7 +320,16 @@ class CouponValidateSerializer(serializers.Serializer):
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
-        fields = ["id", "full_name", "phone", "province", "city", "address", "postal_code", "is_default"]
+        fields = [
+            "id",
+            "full_name",
+            "phone",
+            "province",
+            "city",
+            "address",
+            "postal_code",
+            "is_default",
+        ]
 
 
 class NotificationSerializer(serializers.ModelSerializer):
@@ -168,12 +337,31 @@ class NotificationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Notification
-        fields = ["id", "type", "type_display", "title", "message", "data", "is_read", "created_at"]
+        fields = [
+            "id",
+            "type",
+            "type_display",
+            "title",
+            "message",
+            "data",
+            "is_read",
+            "created_at",
+        ]
         read_only_fields = fields
 
 
 class SiteSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = SiteSettings
-        fields = ["site_name", "site_description", "contact_email", "contact_phone", "address", "social_links", "maintenance_mode", "maintenance_message", "free_shipping_threshold"]
+        fields = [
+            "site_name",
+            "site_description",
+            "contact_email",
+            "contact_phone",
+            "address",
+            "social_links",
+            "maintenance_mode",
+            "maintenance_message",
+            "free_shipping_threshold",
+        ]
         read_only_fields = fields

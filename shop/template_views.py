@@ -1,31 +1,31 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class HomeView(TemplateView):
-    template_name = 'shop/home.html'
+    template_name = "shop/home.html"
 
 
 class CatalogView(TemplateView):
-    template_name = 'shop/catalog.html'
+    template_name = "shop/catalog.html"
 
 
 class AboutView(TemplateView):
-    template_name = 'shop/about.html'
+    template_name = "shop/about.html"
 
 
 class LoginView(TemplateView):
-    template_name = 'shop/login.html'
+    template_name = "shop/login.html"
 
 
 class SignupView(TemplateView):
-    template_name = 'shop/signup.html'
+    template_name = "shop/signup.html"
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
-    template_name = 'shop/profile.html'
-    login_url = '/login/'
+    template_name = "shop/profile.html"
+    login_url = "/login/"
 
 
 home_view = HomeView.as_view()

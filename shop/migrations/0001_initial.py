@@ -13,420 +13,1422 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('auth', '0012_alter_user_first_name_max_length'),
+        ("auth", "0012_alter_user_first_name_max_length"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, unique=True, verbose_name='نام دسته\u200cبندی')),
-                ('slug', models.SlugField(max_length=100, unique=True, verbose_name='اسلاگ')),
-                ('icon', models.CharField(blank=True, help_text='Material Symbols name', max_length=50, verbose_name='آیکون')),
-                ('description', models.TextField(blank=True, verbose_name='توضیحات')),
-                ('order', models.PositiveIntegerField(default=0, verbose_name='ترتیب نمایش')),
-                ('is_active', models.BooleanField(default=True, verbose_name='فعال')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=100, unique=True, verbose_name="نام دسته\u200cبندی"
+                    ),
+                ),
+                (
+                    "slug",
+                    models.SlugField(max_length=100, unique=True, verbose_name="اسلاگ"),
+                ),
+                (
+                    "icon",
+                    models.CharField(
+                        blank=True,
+                        help_text="Material Symbols name",
+                        max_length=50,
+                        verbose_name="آیکون",
+                    ),
+                ),
+                ("description", models.TextField(blank=True, verbose_name="توضیحات")),
+                (
+                    "order",
+                    models.PositiveIntegerField(default=0, verbose_name="ترتیب نمایش"),
+                ),
+                ("is_active", models.BooleanField(default=True, verbose_name="فعال")),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد"),
+                ),
             ],
             options={
-                'verbose_name': 'دسته\u200cبندی',
-                'verbose_name_plural': 'دسته\u200cبندی\u200cها',
-                'ordering': ['order', 'name'],
+                "verbose_name": "دسته\u200cبندی",
+                "verbose_name_plural": "دسته\u200cبندی\u200cها",
+                "ordering": ["order", "name"],
             },
         ),
         migrations.CreateModel(
-            name='SiteSettings',
+            name="SiteSettings",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('site_name', models.CharField(default='Digital Shop', max_length=100, verbose_name='نام سایت')),
-                ('site_description', models.TextField(blank=True, verbose_name='توضیحات سایت')),
-                ('contact_email', models.EmailField(blank=True, max_length=254, verbose_name='ایمیل تماس')),
-                ('contact_phone', models.CharField(blank=True, max_length=20, verbose_name='تلفن تماس')),
-                ('address', models.TextField(blank=True, verbose_name='آدرس')),
-                ('logo', models.ImageField(blank=True, null=True, upload_to='site/', verbose_name='لوگو')),
-                ('favicon', models.ImageField(blank=True, null=True, upload_to='site/', verbose_name='فاوآیکون')),
-                ('primary_color', models.CharField(default='#2563eb', max_length=7, verbose_name='رنگ اصلی')),
-                ('secondary_color', models.CharField(default='#06b6d4', max_length=7, verbose_name='رنگ ثانویه')),
-                ('maintenance_mode', models.BooleanField(default=False, verbose_name='حالت تعمیرات')),
-                ('maintenance_message', models.TextField(blank=True, verbose_name='پیام تعمیرات')),
-                ('social_links', models.JSONField(blank=True, default=dict, verbose_name='شبکه\u200cهای اجتماعی')),
-                ('free_shipping_threshold', models.DecimalField(decimal_places=0, default=1000000, max_digits=12, verbose_name='آستانه ارسال رایگان')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='تاریخ بروزرسانی')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "site_name",
+                    models.CharField(
+                        default="Digital Shop", max_length=100, verbose_name="نام سایت"
+                    ),
+                ),
+                (
+                    "site_description",
+                    models.TextField(blank=True, verbose_name="توضیحات سایت"),
+                ),
+                (
+                    "contact_email",
+                    models.EmailField(
+                        blank=True, max_length=254, verbose_name="ایمیل تماس"
+                    ),
+                ),
+                (
+                    "contact_phone",
+                    models.CharField(
+                        blank=True, max_length=20, verbose_name="تلفن تماس"
+                    ),
+                ),
+                ("address", models.TextField(blank=True, verbose_name="آدرس")),
+                (
+                    "logo",
+                    models.ImageField(
+                        blank=True, null=True, upload_to="site/", verbose_name="لوگو"
+                    ),
+                ),
+                (
+                    "favicon",
+                    models.ImageField(
+                        blank=True,
+                        null=True,
+                        upload_to="site/",
+                        verbose_name="فاوآیکون",
+                    ),
+                ),
+                (
+                    "primary_color",
+                    models.CharField(
+                        default="#2563eb", max_length=7, verbose_name="رنگ اصلی"
+                    ),
+                ),
+                (
+                    "secondary_color",
+                    models.CharField(
+                        default="#06b6d4", max_length=7, verbose_name="رنگ ثانویه"
+                    ),
+                ),
+                (
+                    "maintenance_mode",
+                    models.BooleanField(default=False, verbose_name="حالت تعمیرات"),
+                ),
+                (
+                    "maintenance_message",
+                    models.TextField(blank=True, verbose_name="پیام تعمیرات"),
+                ),
+                (
+                    "social_links",
+                    models.JSONField(
+                        blank=True, default=dict, verbose_name="شبکه\u200cهای اجتماعی"
+                    ),
+                ),
+                (
+                    "free_shipping_threshold",
+                    models.DecimalField(
+                        decimal_places=0,
+                        default=1000000,
+                        max_digits=12,
+                        verbose_name="آستانه ارسال رایگان",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی"),
+                ),
             ],
             options={
-                'verbose_name': 'تنظیمات سایت',
-                'verbose_name_plural': 'تنظیمات سایت',
+                "verbose_name": "تنظیمات سایت",
+                "verbose_name_plural": "تنظیمات سایت",
             },
         ),
         migrations.CreateModel(
-            name='User',
+            name="User",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('password', models.CharField(max_length=128, verbose_name='password')),
-                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
-                ('is_superuser', models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
-                ('username', models.CharField(error_messages={'unique': 'A user with that username already exists.'}, help_text='Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.', max_length=150, unique=True, validators=[django.contrib.auth.validators.UnicodeUsernameValidator()], verbose_name='username')),
-                ('first_name', models.CharField(blank=True, max_length=150, verbose_name='first name')),
-                ('last_name', models.CharField(blank=True, max_length=150, verbose_name='last name')),
-                ('email', models.EmailField(blank=True, max_length=254, verbose_name='email address')),
-                ('is_staff', models.BooleanField(default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='staff status')),
-                ('is_active', models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')),
-                ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
-                ('phone', models.CharField(blank=True, max_length=15, verbose_name='شماره تلفن')),
-                ('avatar', models.ImageField(blank=True, null=True, upload_to='avatars/', verbose_name='آواتار')),
-                ('email_verified', models.BooleanField(default=False, verbose_name='ایمیل تایید شده')),
-                ('phone_verified', models.BooleanField(default=False, verbose_name='تلفن تایید شده')),
-                ('two_factor_enabled', models.BooleanField(default=False, verbose_name='احراز هویت دو مرحله\u200cای')),
-                ('two_factor_secret', models.CharField(blank=True, max_length=32, verbose_name='مخفی دو مرحله\u200cای')),
-                ('last_login_ip', models.GenericIPAddressField(blank=True, null=True, verbose_name='آخرین IP ورود')),
-                ('failed_login_attempts', models.PositiveIntegerField(default=0, verbose_name='تلاش\u200cهای ناموفق ورود')),
-                ('locked_until', models.DateTimeField(blank=True, null=True, verbose_name='قفل تا')),
-                ('password_changed_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ تغییر رمز')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ثبت نام')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='تاریخ بروزرسانی')),
-                ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups')),
-                ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.permission', verbose_name='user permissions')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("password", models.CharField(max_length=128, verbose_name="password")),
+                (
+                    "last_login",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="last login"
+                    ),
+                ),
+                (
+                    "is_superuser",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Designates that this user has all permissions without explicitly assigning them.",
+                        verbose_name="superuser status",
+                    ),
+                ),
+                (
+                    "username",
+                    models.CharField(
+                        error_messages={
+                            "unique": "A user with that username already exists."
+                        },
+                        help_text="Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
+                        max_length=150,
+                        unique=True,
+                        validators=[
+                            django.contrib.auth.validators.UnicodeUsernameValidator()
+                        ],
+                        verbose_name="username",
+                    ),
+                ),
+                (
+                    "first_name",
+                    models.CharField(
+                        blank=True, max_length=150, verbose_name="first name"
+                    ),
+                ),
+                (
+                    "last_name",
+                    models.CharField(
+                        blank=True, max_length=150, verbose_name="last name"
+                    ),
+                ),
+                (
+                    "email",
+                    models.EmailField(
+                        blank=True, max_length=254, verbose_name="email address"
+                    ),
+                ),
+                (
+                    "is_staff",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Designates whether the user can log into this admin site.",
+                        verbose_name="staff status",
+                    ),
+                ),
+                (
+                    "is_active",
+                    models.BooleanField(
+                        default=True,
+                        help_text="Designates whether this user should be treated as active. Unselect this instead of deleting accounts.",
+                        verbose_name="active",
+                    ),
+                ),
+                (
+                    "date_joined",
+                    models.DateTimeField(
+                        default=django.utils.timezone.now, verbose_name="date joined"
+                    ),
+                ),
+                (
+                    "phone",
+                    models.CharField(
+                        blank=True, max_length=15, verbose_name="شماره تلفن"
+                    ),
+                ),
+                (
+                    "avatar",
+                    models.ImageField(
+                        blank=True,
+                        null=True,
+                        upload_to="avatars/",
+                        verbose_name="آواتار",
+                    ),
+                ),
+                (
+                    "email_verified",
+                    models.BooleanField(default=False, verbose_name="ایمیل تایید شده"),
+                ),
+                (
+                    "phone_verified",
+                    models.BooleanField(default=False, verbose_name="تلفن تایید شده"),
+                ),
+                (
+                    "two_factor_enabled",
+                    models.BooleanField(
+                        default=False, verbose_name="احراز هویت دو مرحله\u200cای"
+                    ),
+                ),
+                (
+                    "two_factor_secret",
+                    models.CharField(
+                        blank=True, max_length=32, verbose_name="مخفی دو مرحله\u200cای"
+                    ),
+                ),
+                (
+                    "last_login_ip",
+                    models.GenericIPAddressField(
+                        blank=True, null=True, verbose_name="آخرین IP ورود"
+                    ),
+                ),
+                (
+                    "failed_login_attempts",
+                    models.PositiveIntegerField(
+                        default=0, verbose_name="تلاش\u200cهای ناموفق ورود"
+                    ),
+                ),
+                (
+                    "locked_until",
+                    models.DateTimeField(blank=True, null=True, verbose_name="قفل تا"),
+                ),
+                (
+                    "password_changed_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="تاریخ تغییر رمز"
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="تاریخ ثبت نام"
+                    ),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی"),
+                ),
+                (
+                    "groups",
+                    models.ManyToManyField(
+                        blank=True,
+                        help_text="The groups this user belongs to. A user will get all permissions granted to each of their groups.",
+                        related_name="user_set",
+                        related_query_name="user",
+                        to="auth.group",
+                        verbose_name="groups",
+                    ),
+                ),
+                (
+                    "user_permissions",
+                    models.ManyToManyField(
+                        blank=True,
+                        help_text="Specific permissions for this user.",
+                        related_name="user_set",
+                        related_query_name="user",
+                        to="auth.permission",
+                        verbose_name="user permissions",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'کاربر',
-                'verbose_name_plural': 'کاربران',
+                "verbose_name": "کاربر",
+                "verbose_name_plural": "کاربران",
             },
             managers=[
-                ('objects', django.contrib.auth.models.UserManager()),
+                ("objects", django.contrib.auth.models.UserManager()),
             ],
         ),
         migrations.CreateModel(
-            name='Address',
+            name="Address",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100, verbose_name='عنوان')),
-                ('full_name', models.CharField(max_length=100, verbose_name='نام کامل')),
-                ('phone', models.CharField(max_length=15, verbose_name='شماره تماس')),
-                ('province', models.CharField(max_length=50, verbose_name='استان')),
-                ('city', models.CharField(max_length=50, verbose_name='شهر')),
-                ('address', models.TextField(verbose_name='آدرس کامل')),
-                ('postal_code', models.CharField(max_length=10, verbose_name='کد پستی')),
-                ('is_default', models.BooleanField(default=False, verbose_name='پیش\u200cفرض')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='تاریخ بروزرسانی')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='addresses', to=settings.AUTH_USER_MODEL, verbose_name='کاربر')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=100, verbose_name="عنوان")),
+                (
+                    "full_name",
+                    models.CharField(max_length=100, verbose_name="نام کامل"),
+                ),
+                ("phone", models.CharField(max_length=15, verbose_name="شماره تماس")),
+                ("province", models.CharField(max_length=50, verbose_name="استان")),
+                ("city", models.CharField(max_length=50, verbose_name="شهر")),
+                ("address", models.TextField(verbose_name="آدرس کامل")),
+                (
+                    "postal_code",
+                    models.CharField(max_length=10, verbose_name="کد پستی"),
+                ),
+                (
+                    "is_default",
+                    models.BooleanField(default=False, verbose_name="پیش\u200cفرض"),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی"),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="addresses",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="کاربر",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'آدرس',
-                'verbose_name_plural': 'آدرس\u200cها',
-                'ordering': ['-is_default', '-created_at'],
+                "verbose_name": "آدرس",
+                "verbose_name_plural": "آدرس\u200cها",
+                "ordering": ["-is_default", "-created_at"],
             },
         ),
         migrations.CreateModel(
-            name='Coupon',
+            name="Coupon",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('code', models.CharField(max_length=50, unique=True, verbose_name='کد کوپن')),
-                ('name', models.CharField(max_length=100, verbose_name='نام کوپن')),
-                ('description', models.TextField(blank=True, verbose_name='توضیحات')),
-                ('discount_type', models.CharField(choices=[('percent', 'درصدی'), ('fixed', 'مبلغ ثابت')], max_length=10, verbose_name='نوع تخفیف')),
-                ('discount_value', models.DecimalField(decimal_places=0, max_digits=10, verbose_name='مقدار تخفیف')),
-                ('min_order_amount', models.DecimalField(decimal_places=0, default=0, max_digits=12, verbose_name='حداقل مبلغ سفارش')),
-                ('max_discount_amount', models.DecimalField(blank=True, decimal_places=0, max_digits=12, null=True, verbose_name='حداکثر تخفیف')),
-                ('usage_limit', models.PositiveIntegerField(default=0, help_text='0 = نامحدود', verbose_name='محدودیت استفاده کل')),
-                ('usage_limit_per_user', models.PositiveIntegerField(default=1, verbose_name='محدودیت استفاده هر کاربر')),
-                ('used_count', models.PositiveIntegerField(default=0, verbose_name='تعداد استفاده شده')),
-                ('valid_from', models.DateTimeField(default=django.utils.timezone.now, verbose_name='اعتبار از')),
-                ('valid_until', models.DateTimeField(verbose_name='اعتبار تا')),
-                ('is_active', models.BooleanField(default=True, verbose_name='فعال')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='تاریخ بروزرسانی')),
-                ('applicable_categories', models.ManyToManyField(blank=True, related_name='coupons', to='shop.category', verbose_name='دسته\u200cبندی\u200cهای شامل')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "code",
+                    models.CharField(
+                        max_length=50, unique=True, verbose_name="کد کوپن"
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, verbose_name="نام کوپن")),
+                ("description", models.TextField(blank=True, verbose_name="توضیحات")),
+                (
+                    "discount_type",
+                    models.CharField(
+                        choices=[("percent", "درصدی"), ("fixed", "مبلغ ثابت")],
+                        max_length=10,
+                        verbose_name="نوع تخفیف",
+                    ),
+                ),
+                (
+                    "discount_value",
+                    models.DecimalField(
+                        decimal_places=0, max_digits=10, verbose_name="مقدار تخفیف"
+                    ),
+                ),
+                (
+                    "min_order_amount",
+                    models.DecimalField(
+                        decimal_places=0,
+                        default=0,
+                        max_digits=12,
+                        verbose_name="حداقل مبلغ سفارش",
+                    ),
+                ),
+                (
+                    "max_discount_amount",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=0,
+                        max_digits=12,
+                        null=True,
+                        verbose_name="حداکثر تخفیف",
+                    ),
+                ),
+                (
+                    "usage_limit",
+                    models.PositiveIntegerField(
+                        default=0,
+                        help_text="0 = نامحدود",
+                        verbose_name="محدودیت استفاده کل",
+                    ),
+                ),
+                (
+                    "usage_limit_per_user",
+                    models.PositiveIntegerField(
+                        default=1, verbose_name="محدودیت استفاده هر کاربر"
+                    ),
+                ),
+                (
+                    "used_count",
+                    models.PositiveIntegerField(
+                        default=0, verbose_name="تعداد استفاده شده"
+                    ),
+                ),
+                (
+                    "valid_from",
+                    models.DateTimeField(
+                        default=django.utils.timezone.now, verbose_name="اعتبار از"
+                    ),
+                ),
+                ("valid_until", models.DateTimeField(verbose_name="اعتبار تا")),
+                ("is_active", models.BooleanField(default=True, verbose_name="فعال")),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی"),
+                ),
+                (
+                    "applicable_categories",
+                    models.ManyToManyField(
+                        blank=True,
+                        related_name="coupons",
+                        to="shop.category",
+                        verbose_name="دسته\u200cبندی\u200cهای شامل",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'کوپن',
-                'verbose_name_plural': 'کوپن\u200cها',
-                'ordering': ['-created_at'],
+                "verbose_name": "کوپن",
+                "verbose_name_plural": "کوپن\u200cها",
+                "ordering": ["-created_at"],
             },
         ),
         migrations.CreateModel(
-            name='LoginAttempt',
+            name="LoginAttempt",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('username', models.CharField(db_index=True, max_length=150, verbose_name='نام کاربری')),
-                ('ip_address', models.GenericIPAddressField(verbose_name='آدرس IP')),
-                ('user_agent', models.TextField(blank=True, verbose_name='User Agent')),
-                ('status', models.CharField(choices=[('success', 'موفق'), ('failed', 'ناموفق'), ('blocked', 'مسدود شده'), ('locked', 'حساب قفل شده')], max_length=10, verbose_name='وضعیت')),
-                ('failure_reason', models.CharField(blank=True, max_length=100, verbose_name='دلیل شکست')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ تلاش')),
-                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='login_attempts', to=settings.AUTH_USER_MODEL, verbose_name='کاربر')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "username",
+                    models.CharField(
+                        db_index=True, max_length=150, verbose_name="نام کاربری"
+                    ),
+                ),
+                ("ip_address", models.GenericIPAddressField(verbose_name="آدرس IP")),
+                ("user_agent", models.TextField(blank=True, verbose_name="User Agent")),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("success", "موفق"),
+                            ("failed", "ناموفق"),
+                            ("blocked", "مسدود شده"),
+                            ("locked", "حساب قفل شده"),
+                        ],
+                        max_length=10,
+                        verbose_name="وضعیت",
+                    ),
+                ),
+                (
+                    "failure_reason",
+                    models.CharField(
+                        blank=True, max_length=100, verbose_name="دلیل شکست"
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ تلاش"),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="login_attempts",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="کاربر",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'تلاش ورود',
-                'verbose_name_plural': 'تلاش\u200cهای ورود',
-                'ordering': ['-created_at'],
+                "verbose_name": "تلاش ورود",
+                "verbose_name_plural": "تلاش\u200cهای ورود",
+                "ordering": ["-created_at"],
             },
         ),
         migrations.CreateModel(
-            name='Notification',
+            name="Notification",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type', models.CharField(choices=[('order', 'سفارش'), ('payment', 'پرداخت'), ('subscription', 'اشتراک'), ('wallet', 'کیف پول'), ('system', 'سیستم'), ('promotion', 'تبلیغات')], max_length=20, verbose_name='نوع')),
-                ('title', models.CharField(max_length=200, verbose_name='عنوان')),
-                ('message', models.TextField(verbose_name='پیام')),
-                ('is_read', models.BooleanField(default=False, verbose_name='خوانده شده')),
-                ('data', models.JSONField(blank=True, default=dict, verbose_name='داده\u200cهای اضافه')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='notifications', to=settings.AUTH_USER_MODEL, verbose_name='کاربر')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("order", "سفارش"),
+                            ("payment", "پرداخت"),
+                            ("subscription", "اشتراک"),
+                            ("wallet", "کیف پول"),
+                            ("system", "سیستم"),
+                            ("promotion", "تبلیغات"),
+                        ],
+                        max_length=20,
+                        verbose_name="نوع",
+                    ),
+                ),
+                ("title", models.CharField(max_length=200, verbose_name="عنوان")),
+                ("message", models.TextField(verbose_name="پیام")),
+                (
+                    "is_read",
+                    models.BooleanField(default=False, verbose_name="خوانده شده"),
+                ),
+                (
+                    "data",
+                    models.JSONField(
+                        blank=True, default=dict, verbose_name="داده\u200cهای اضافه"
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد"),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="notifications",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="کاربر",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'اعلان',
-                'verbose_name_plural': 'اعلان\u200cها',
-                'ordering': ['-created_at'],
+                "verbose_name": "اعلان",
+                "verbose_name_plural": "اعلان\u200cها",
+                "ordering": ["-created_at"],
             },
         ),
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status', models.CharField(choices=[('pending', 'در انتظار پرداخت'), ('paid', 'پرداخت شده'), ('processing', 'در حال پردازش'), ('completed', 'تکمیل شده'), ('cancelled', 'لغو شده'), ('refunded', 'استرداد شده'), ('failed', 'ناموفق')], default='pending', max_length=20, verbose_name='وضعیت')),
-                ('payment_method', models.CharField(choices=[('wallet', 'کیف پول'), ('card', 'کارت بانکی'), ('gateway', 'درگاه پرداخت')], max_length=20, verbose_name='روش پرداخت')),
-                ('tracking_code', models.CharField(max_length=20, unique=True, verbose_name='کد پیگیری')),
-                ('subtotal', models.DecimalField(decimal_places=0, max_digits=12, verbose_name='مجموع جزئی')),
-                ('discount', models.DecimalField(decimal_places=0, default=0, max_digits=12, verbose_name='تخفیف')),
-                ('tax', models.DecimalField(decimal_places=0, default=0, max_digits=12, verbose_name='مالیات')),
-                ('total', models.DecimalField(decimal_places=0, max_digits=12, verbose_name='مجموع')),
-                ('paid_at', models.DateTimeField(blank=True, null=True, verbose_name='تاریخ پرداخت')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='تاریخ بروزرسانی')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='orders', to=settings.AUTH_USER_MODEL, verbose_name='کاربر')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("pending", "در انتظار پرداخت"),
+                            ("paid", "پرداخت شده"),
+                            ("processing", "در حال پردازش"),
+                            ("completed", "تکمیل شده"),
+                            ("cancelled", "لغو شده"),
+                            ("refunded", "استرداد شده"),
+                            ("failed", "ناموفق"),
+                        ],
+                        default="pending",
+                        max_length=20,
+                        verbose_name="وضعیت",
+                    ),
+                ),
+                (
+                    "payment_method",
+                    models.CharField(
+                        choices=[
+                            ("wallet", "کیف پول"),
+                            ("card", "کارت بانکی"),
+                            ("gateway", "درگاه پرداخت"),
+                        ],
+                        max_length=20,
+                        verbose_name="روش پرداخت",
+                    ),
+                ),
+                (
+                    "tracking_code",
+                    models.CharField(
+                        max_length=20, unique=True, verbose_name="کد پیگیری"
+                    ),
+                ),
+                (
+                    "subtotal",
+                    models.DecimalField(
+                        decimal_places=0, max_digits=12, verbose_name="مجموع جزئی"
+                    ),
+                ),
+                (
+                    "discount",
+                    models.DecimalField(
+                        decimal_places=0, default=0, max_digits=12, verbose_name="تخفیف"
+                    ),
+                ),
+                (
+                    "tax",
+                    models.DecimalField(
+                        decimal_places=0,
+                        default=0,
+                        max_digits=12,
+                        verbose_name="مالیات",
+                    ),
+                ),
+                (
+                    "total",
+                    models.DecimalField(
+                        decimal_places=0, max_digits=12, verbose_name="مجموع"
+                    ),
+                ),
+                (
+                    "paid_at",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="تاریخ پرداخت"
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی"),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="orders",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="کاربر",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'سفارش',
-                'verbose_name_plural': 'سفارش\u200cها',
-                'ordering': ['-created_at'],
+                "verbose_name": "سفارش",
+                "verbose_name_plural": "سفارش\u200cها",
+                "ordering": ["-created_at"],
             },
         ),
         migrations.CreateModel(
-            name='CouponUsage',
+            name="CouponUsage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('discount_amount', models.DecimalField(decimal_places=0, max_digits=12, verbose_name='مبلغ تخفیف')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ استفاده')),
-                ('coupon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='usages', to='shop.coupon', verbose_name='کوپن')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='coupon_usages', to=settings.AUTH_USER_MODEL, verbose_name='کاربر')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='coupon_usages', to='shop.order', verbose_name='سفارش')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "discount_amount",
+                    models.DecimalField(
+                        decimal_places=0, max_digits=12, verbose_name="مبلغ تخفیف"
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="تاریخ استفاده"
+                    ),
+                ),
+                (
+                    "coupon",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="usages",
+                        to="shop.coupon",
+                        verbose_name="کوپن",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="coupon_usages",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="کاربر",
+                    ),
+                ),
+                (
+                    "order",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="coupon_usages",
+                        to="shop.order",
+                        verbose_name="سفارش",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'استفاده از کوپن',
-                'verbose_name_plural': 'استفاده\u200cهای کوپن',
+                "verbose_name": "استفاده از کوپن",
+                "verbose_name_plural": "استفاده\u200cهای کوپن",
             },
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200, verbose_name='نام محصول')),
-                ('slug', models.SlugField(max_length=200, unique=True, verbose_name='اسلاگ')),
-                ('type', models.CharField(choices=[('gift_card', 'گیفت کارت'), ('subscription', 'اشتراک'), ('account', 'اکانت'), ('license', 'لایسنس')], default='subscription', max_length=20, verbose_name='نوع محصول')),
-                ('status', models.CharField(choices=[('draft', 'پیش\u200cنویس'), ('active', 'فعال'), ('out_of_stock', 'ناموجود'), ('archived', 'بایگانی')], default='draft', max_length=20, verbose_name='وضعیت')),
-                ('description', models.TextField(verbose_name='توضیحات کامل')),
-                ('short_description', models.TextField(blank=True, max_length=500, verbose_name='توضیحات کوتاه')),
-                ('logo', models.ImageField(blank=True, null=True, upload_to='products/logos/', verbose_name='لوگو')),
-                ('thumbnail', models.ImageField(blank=True, null=True, upload_to='products/thumbnails/', verbose_name='تصویر کاور')),
-                ('price', models.DecimalField(decimal_places=0, max_digits=12, verbose_name='قیمت (تومان)')),
-                ('original_price', models.DecimalField(blank=True, decimal_places=0, max_digits=12, null=True, verbose_name='قیمت اصلی (تومان)')),
-                ('duration_days', models.PositiveIntegerField(blank=True, help_text='برای اشتراک\u200cها', null=True, verbose_name='مدت اعتبار (روز)')),
-                ('features', models.JSONField(blank=True, default=list, help_text='لیست ویژگی\u200cها به صورت JSON', verbose_name='ویژگی\u200cها')),
-                ('metadata', models.JSONField(blank=True, default=dict, help_text='اطلاعات اضافه مثل ریجن، نسخه، و غیره', verbose_name='اطلاعات تکمیلی')),
-                ('stock', models.PositiveIntegerField(default=0, verbose_name='موجودی')),
-                ('sold_count', models.PositiveIntegerField(default=0, verbose_name='تعداد فروش')),
-                ('is_featured', models.BooleanField(default=False, verbose_name='محصول ویژه')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='تاریخ بروزرسانی')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='products', to='shop.category', verbose_name='دسته\u200cبندی')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200, verbose_name="نام محصول")),
+                (
+                    "slug",
+                    models.SlugField(max_length=200, unique=True, verbose_name="اسلاگ"),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("gift_card", "گیفت کارت"),
+                            ("subscription", "اشتراک"),
+                            ("account", "اکانت"),
+                            ("license", "لایسنس"),
+                        ],
+                        default="subscription",
+                        max_length=20,
+                        verbose_name="نوع محصول",
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("draft", "پیش\u200cنویس"),
+                            ("active", "فعال"),
+                            ("out_of_stock", "ناموجود"),
+                            ("archived", "بایگانی"),
+                        ],
+                        default="draft",
+                        max_length=20,
+                        verbose_name="وضعیت",
+                    ),
+                ),
+                ("description", models.TextField(verbose_name="توضیحات کامل")),
+                (
+                    "short_description",
+                    models.TextField(
+                        blank=True, max_length=500, verbose_name="توضیحات کوتاه"
+                    ),
+                ),
+                (
+                    "logo",
+                    models.ImageField(
+                        blank=True,
+                        null=True,
+                        upload_to="products/logos/",
+                        verbose_name="لوگو",
+                    ),
+                ),
+                (
+                    "thumbnail",
+                    models.ImageField(
+                        blank=True,
+                        null=True,
+                        upload_to="products/thumbnails/",
+                        verbose_name="تصویر کاور",
+                    ),
+                ),
+                (
+                    "price",
+                    models.DecimalField(
+                        decimal_places=0, max_digits=12, verbose_name="قیمت (تومان)"
+                    ),
+                ),
+                (
+                    "original_price",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=0,
+                        max_digits=12,
+                        null=True,
+                        verbose_name="قیمت اصلی (تومان)",
+                    ),
+                ),
+                (
+                    "duration_days",
+                    models.PositiveIntegerField(
+                        blank=True,
+                        help_text="برای اشتراک\u200cها",
+                        null=True,
+                        verbose_name="مدت اعتبار (روز)",
+                    ),
+                ),
+                (
+                    "features",
+                    models.JSONField(
+                        blank=True,
+                        default=list,
+                        help_text="لیست ویژگی\u200cها به صورت JSON",
+                        verbose_name="ویژگی\u200cها",
+                    ),
+                ),
+                (
+                    "metadata",
+                    models.JSONField(
+                        blank=True,
+                        default=dict,
+                        help_text="اطلاعات اضافه مثل ریجن، نسخه، و غیره",
+                        verbose_name="اطلاعات تکمیلی",
+                    ),
+                ),
+                (
+                    "stock",
+                    models.PositiveIntegerField(default=0, verbose_name="موجودی"),
+                ),
+                (
+                    "sold_count",
+                    models.PositiveIntegerField(default=0, verbose_name="تعداد فروش"),
+                ),
+                (
+                    "is_featured",
+                    models.BooleanField(default=False, verbose_name="محصول ویژه"),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی"),
+                ),
+                (
+                    "category",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="products",
+                        to="shop.category",
+                        verbose_name="دسته\u200cبندی",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'محصول',
-                'verbose_name_plural': 'محصولات',
-                'ordering': ['-created_at'],
+                "verbose_name": "محصول",
+                "verbose_name_plural": "محصولات",
+                "ordering": ["-created_at"],
             },
         ),
         migrations.AddField(
-            model_name='coupon',
-            name='applicable_products',
-            field=models.ManyToManyField(blank=True, related_name='coupons', to='shop.product', verbose_name='محصولات شامل'),
+            model_name="coupon",
+            name="applicable_products",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="coupons",
+                to="shop.product",
+                verbose_name="محصولات شامل",
+            ),
         ),
         migrations.CreateModel(
-            name='ProductVariant',
+            name="ProductVariant",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='نام تنوع')),
-                ('sku', models.CharField(max_length=50, unique=True, verbose_name='SKU')),
-                ('price', models.DecimalField(decimal_places=0, max_digits=12, verbose_name='قیمت (تومان)')),
-                ('stock', models.PositiveIntegerField(default=0, verbose_name='موجودی')),
-                ('metadata', models.JSONField(blank=True, default=dict, help_text='مثل ریجن، نسخه، و غیره', verbose_name='اطلاعات تکمیلی')),
-                ('is_active', models.BooleanField(default=True, verbose_name='فعال')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='تاریخ بروزرسانی')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='variants', to='shop.product', verbose_name='محصول')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, verbose_name="نام تنوع")),
+                (
+                    "sku",
+                    models.CharField(max_length=50, unique=True, verbose_name="SKU"),
+                ),
+                (
+                    "price",
+                    models.DecimalField(
+                        decimal_places=0, max_digits=12, verbose_name="قیمت (تومان)"
+                    ),
+                ),
+                (
+                    "stock",
+                    models.PositiveIntegerField(default=0, verbose_name="موجودی"),
+                ),
+                (
+                    "metadata",
+                    models.JSONField(
+                        blank=True,
+                        default=dict,
+                        help_text="مثل ریجن، نسخه، و غیره",
+                        verbose_name="اطلاعات تکمیلی",
+                    ),
+                ),
+                ("is_active", models.BooleanField(default=True, verbose_name="فعال")),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی"),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="variants",
+                        to="shop.product",
+                        verbose_name="محصول",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'تنوع محصول',
-                'verbose_name_plural': 'تنوع\u200cهای محصول',
-                'ordering': ['product', 'name'],
+                "verbose_name": "تنوع محصول",
+                "verbose_name_plural": "تنوع\u200cهای محصول",
+                "ordering": ["product", "name"],
             },
         ),
         migrations.CreateModel(
-            name='OrderItem',
+            name="OrderItem",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.PositiveIntegerField(default=1, verbose_name='تعداد')),
-                ('unit_price', models.DecimalField(decimal_places=0, max_digits=12, verbose_name='قیمت واحد')),
-                ('total_price', models.DecimalField(decimal_places=0, max_digits=12, verbose_name='قیمت کل')),
-                ('delivery_type', models.CharField(choices=[('code', 'کد'), ('file', 'فایل'), ('account', 'اکانت'), ('link', 'لینک'), ('manual', 'دستی')], default='code', max_length=10, verbose_name='نوع تحویل')),
-                ('delivery_content', models.JSONField(blank=True, default=dict, help_text='کدها، فایل\u200cها، اطلاعات اکانت و غیره', verbose_name='محتویات تحویل')),
-                ('is_delivered', models.BooleanField(default=False, verbose_name='تحویل داده شده')),
-                ('delivered_at', models.DateTimeField(blank=True, null=True, verbose_name='تاریخ تحویل')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='items', to='shop.order', verbose_name='سفارش')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='order_items', to='shop.product', verbose_name='محصول')),
-                ('variant', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, related_name='order_items', to='shop.productvariant', verbose_name='تنوع')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "quantity",
+                    models.PositiveIntegerField(default=1, verbose_name="تعداد"),
+                ),
+                (
+                    "unit_price",
+                    models.DecimalField(
+                        decimal_places=0, max_digits=12, verbose_name="قیمت واحد"
+                    ),
+                ),
+                (
+                    "total_price",
+                    models.DecimalField(
+                        decimal_places=0, max_digits=12, verbose_name="قیمت کل"
+                    ),
+                ),
+                (
+                    "delivery_type",
+                    models.CharField(
+                        choices=[
+                            ("code", "کد"),
+                            ("file", "فایل"),
+                            ("account", "اکانت"),
+                            ("link", "لینک"),
+                            ("manual", "دستی"),
+                        ],
+                        default="code",
+                        max_length=10,
+                        verbose_name="نوع تحویل",
+                    ),
+                ),
+                (
+                    "delivery_content",
+                    models.JSONField(
+                        blank=True,
+                        default=dict,
+                        help_text="کدها، فایل\u200cها، اطلاعات اکانت و غیره",
+                        verbose_name="محتویات تحویل",
+                    ),
+                ),
+                (
+                    "is_delivered",
+                    models.BooleanField(default=False, verbose_name="تحویل داده شده"),
+                ),
+                (
+                    "delivered_at",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="تاریخ تحویل"
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد"),
+                ),
+                (
+                    "order",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="items",
+                        to="shop.order",
+                        verbose_name="سفارش",
+                    ),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="order_items",
+                        to="shop.product",
+                        verbose_name="محصول",
+                    ),
+                ),
+                (
+                    "variant",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="order_items",
+                        to="shop.productvariant",
+                        verbose_name="تنوع",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'مورد سفارش',
-                'verbose_name_plural': 'موارد سفارش',
+                "verbose_name": "مورد سفارش",
+                "verbose_name_plural": "موارد سفارش",
             },
         ),
         migrations.CreateModel(
-            name='Subscription',
+            name="Subscription",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status', models.CharField(choices=[('active', 'فعال'), ('expired', 'منقضی شده'), ('cancelled', 'لغو شده'), ('pending', 'در انتظار فعال\u200cسازی')], default='pending', max_length=20, verbose_name='وضعیت')),
-                ('starts_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ شروع')),
-                ('expires_at', models.DateTimeField(verbose_name='تاریخ انقضا')),
-                ('auto_renew', models.BooleanField(default=False, verbose_name='تمدید خودکار')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='تاریخ بروزرسانی')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='subscriptions', to='shop.product', verbose_name='محصول')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subscriptions', to=settings.AUTH_USER_MODEL, verbose_name='کاربر')),
-                ('variant', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, related_name='subscriptions', to='shop.productvariant', verbose_name='تنوع')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("active", "فعال"),
+                            ("expired", "منقضی شده"),
+                            ("cancelled", "لغو شده"),
+                            ("pending", "در انتظار فعال\u200cسازی"),
+                        ],
+                        default="pending",
+                        max_length=20,
+                        verbose_name="وضعیت",
+                    ),
+                ),
+                (
+                    "starts_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ شروع"),
+                ),
+                ("expires_at", models.DateTimeField(verbose_name="تاریخ انقضا")),
+                (
+                    "auto_renew",
+                    models.BooleanField(default=False, verbose_name="تمدید خودکار"),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی"),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="subscriptions",
+                        to="shop.product",
+                        verbose_name="محصول",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="subscriptions",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="کاربر",
+                    ),
+                ),
+                (
+                    "variant",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="subscriptions",
+                        to="shop.productvariant",
+                        verbose_name="تنوع",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'اشتراک',
-                'verbose_name_plural': 'اشتراک\u200cها',
-                'ordering': ['-created_at'],
+                "verbose_name": "اشتراک",
+                "verbose_name_plural": "اشتراک\u200cها",
+                "ordering": ["-created_at"],
             },
         ),
         migrations.CreateModel(
-            name='Wallet',
+            name="Wallet",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('balance', models.DecimalField(decimal_places=0, default=0, max_digits=12, verbose_name='موجودی')),
-                ('blocked_balance', models.DecimalField(decimal_places=0, default=0, max_digits=12, verbose_name='موجودی مسدود')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='تاریخ بروزرسانی')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='wallet', to=settings.AUTH_USER_MODEL, verbose_name='کاربر')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "balance",
+                    models.DecimalField(
+                        decimal_places=0,
+                        default=0,
+                        max_digits=12,
+                        verbose_name="موجودی",
+                    ),
+                ),
+                (
+                    "blocked_balance",
+                    models.DecimalField(
+                        decimal_places=0,
+                        default=0,
+                        max_digits=12,
+                        verbose_name="موجودی مسدود",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی"),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="wallet",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="کاربر",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'کیف پول',
-                'verbose_name_plural': 'کیف پول\u200cها',
+                "verbose_name": "کیف پول",
+                "verbose_name_plural": "کیف پول\u200cها",
             },
         ),
         migrations.CreateModel(
-            name='WalletTransaction',
+            name="WalletTransaction",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type', models.CharField(choices=[('deposit', 'واریز'), ('withdrawal', 'برداشت'), ('purchase', 'خرید'), ('refund', 'استرداد'), ('commission', 'کمیسیون')], max_length=20, verbose_name='نوع تراکنش')),
-                ('status', models.CharField(choices=[('pending', 'در انتظار'), ('completed', 'تکمیل شده'), ('failed', 'ناموفق'), ('cancelled', 'لغو شده')], default='pending', max_length=20, verbose_name='وضعیت')),
-                ('amount', models.DecimalField(decimal_places=0, max_digits=12, verbose_name='مبلغ')),
-                ('description', models.TextField(blank=True, verbose_name='توضیحات')),
-                ('reference_id', models.CharField(blank=True, help_text='شناسه سفارش، پرداخت، و غیره', max_length=100, verbose_name='شناسه مرجع')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')),
-                ('completed_at', models.DateTimeField(blank=True, null=True, verbose_name='تاریخ تکمیل')),
-                ('wallet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='transactions', to='shop.wallet', verbose_name='کیف پول')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("deposit", "واریز"),
+                            ("withdrawal", "برداشت"),
+                            ("purchase", "خرید"),
+                            ("refund", "استرداد"),
+                            ("commission", "کمیسیون"),
+                        ],
+                        max_length=20,
+                        verbose_name="نوع تراکنش",
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("pending", "در انتظار"),
+                            ("completed", "تکمیل شده"),
+                            ("failed", "ناموفق"),
+                            ("cancelled", "لغو شده"),
+                        ],
+                        default="pending",
+                        max_length=20,
+                        verbose_name="وضعیت",
+                    ),
+                ),
+                (
+                    "amount",
+                    models.DecimalField(
+                        decimal_places=0, max_digits=12, verbose_name="مبلغ"
+                    ),
+                ),
+                ("description", models.TextField(blank=True, verbose_name="توضیحات")),
+                (
+                    "reference_id",
+                    models.CharField(
+                        blank=True,
+                        help_text="شناسه سفارش، پرداخت، و غیره",
+                        max_length=100,
+                        verbose_name="شناسه مرجع",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد"),
+                ),
+                (
+                    "completed_at",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="تاریخ تکمیل"
+                    ),
+                ),
+                (
+                    "wallet",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="transactions",
+                        to="shop.wallet",
+                        verbose_name="کیف پول",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'تراکنش کیف پول',
-                'verbose_name_plural': 'تراکنش\u200cهای کیف پول',
-                'ordering': ['-created_at'],
+                "verbose_name": "تراکنش کیف پول",
+                "verbose_name_plural": "تراکنش\u200cهای کیف پول",
+                "ordering": ["-created_at"],
             },
         ),
         migrations.AddIndex(
-            model_name='user',
-            index=models.Index(fields=['email'], name='shop_user_email_115a61_idx'),
+            model_name="user",
+            index=models.Index(fields=["email"], name="shop_user_email_115a61_idx"),
         ),
         migrations.AddIndex(
-            model_name='user',
-            index=models.Index(fields=['phone'], name='shop_user_phone_fb8ff2_idx'),
+            model_name="user",
+            index=models.Index(fields=["phone"], name="shop_user_phone_fb8ff2_idx"),
         ),
         migrations.AddIndex(
-            model_name='user',
-            index=models.Index(fields=['locked_until'], name='shop_user_locked__8f6320_idx'),
+            model_name="user",
+            index=models.Index(
+                fields=["locked_until"], name="shop_user_locked__8f6320_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='loginattempt',
-            index=models.Index(fields=['username', 'created_at'], name='shop_logina_usernam_7fa68b_idx'),
+            model_name="loginattempt",
+            index=models.Index(
+                fields=["username", "created_at"], name="shop_logina_usernam_7fa68b_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='loginattempt',
-            index=models.Index(fields=['ip_address', 'created_at'], name='shop_logina_ip_addr_a62a03_idx'),
+            model_name="loginattempt",
+            index=models.Index(
+                fields=["ip_address", "created_at"],
+                name="shop_logina_ip_addr_a62a03_idx",
+            ),
         ),
         migrations.AddIndex(
-            model_name='loginattempt',
-            index=models.Index(fields=['status', 'created_at'], name='shop_logina_status_2580f7_idx'),
+            model_name="loginattempt",
+            index=models.Index(
+                fields=["status", "created_at"], name="shop_logina_status_2580f7_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='notification',
-            index=models.Index(fields=['user', 'is_read'], name='shop_notifi_user_id_7ecac9_idx'),
+            model_name="notification",
+            index=models.Index(
+                fields=["user", "is_read"], name="shop_notifi_user_id_7ecac9_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='notification',
-            index=models.Index(fields=['type', 'created_at'], name='shop_notifi_type_4b6fb1_idx'),
+            model_name="notification",
+            index=models.Index(
+                fields=["type", "created_at"], name="shop_notifi_type_4b6fb1_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='order',
-            index=models.Index(fields=['user', 'status'], name='shop_order_user_id_098a79_idx'),
+            model_name="order",
+            index=models.Index(
+                fields=["user", "status"], name="shop_order_user_id_098a79_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='order',
-            index=models.Index(fields=['tracking_code'], name='shop_order_trackin_d86fc8_idx'),
+            model_name="order",
+            index=models.Index(
+                fields=["tracking_code"], name="shop_order_trackin_d86fc8_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='order',
-            index=models.Index(fields=['status', 'created_at'], name='shop_order_status_700268_idx'),
+            model_name="order",
+            index=models.Index(
+                fields=["status", "created_at"], name="shop_order_status_700268_idx"
+            ),
         ),
         migrations.AlterUniqueTogether(
-            name='couponusage',
-            unique_together={('coupon', 'user', 'order')},
+            name="couponusage",
+            unique_together={("coupon", "user", "order")},
         ),
         migrations.AddIndex(
-            model_name='product',
-            index=models.Index(fields=['category', 'status'], name='shop_produc_categor_c9aecd_idx'),
+            model_name="product",
+            index=models.Index(
+                fields=["category", "status"], name="shop_produc_categor_c9aecd_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='product',
-            index=models.Index(fields=['status', 'is_featured'], name='shop_produc_status_9e5ba5_idx'),
+            model_name="product",
+            index=models.Index(
+                fields=["status", "is_featured"], name="shop_produc_status_9e5ba5_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='product',
-            index=models.Index(fields=['slug'], name='shop_produc_slug_76971b_idx'),
+            model_name="product",
+            index=models.Index(fields=["slug"], name="shop_produc_slug_76971b_idx"),
         ),
         migrations.AddIndex(
-            model_name='subscription',
-            index=models.Index(fields=['user', 'status'], name='shop_subscr_user_id_c7ca54_idx'),
+            model_name="subscription",
+            index=models.Index(
+                fields=["user", "status"], name="shop_subscr_user_id_c7ca54_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='subscription',
-            index=models.Index(fields=['status', 'expires_at'], name='shop_subscr_status_0a6711_idx'),
+            model_name="subscription",
+            index=models.Index(
+                fields=["status", "expires_at"], name="shop_subscr_status_0a6711_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='wallettransaction',
-            index=models.Index(fields=['wallet', 'type'], name='shop_wallet_wallet__7f4dfc_idx'),
+            model_name="wallettransaction",
+            index=models.Index(
+                fields=["wallet", "type"], name="shop_wallet_wallet__7f4dfc_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='wallettransaction',
-            index=models.Index(fields=['status', 'created_at'], name='shop_wallet_status_28f6e5_idx'),
+            model_name="wallettransaction",
+            index=models.Index(
+                fields=["status", "created_at"], name="shop_wallet_status_28f6e5_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='wallettransaction',
-            index=models.Index(fields=['reference_id'], name='shop_wallet_referen_870fa3_idx'),
+            model_name="wallettransaction",
+            index=models.Index(
+                fields=["reference_id"], name="shop_wallet_referen_870fa3_idx"
+            ),
         ),
     ]
