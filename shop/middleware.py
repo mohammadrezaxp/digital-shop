@@ -13,10 +13,13 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             settings, "SECURE_CROSS_ORIGIN_OPENER_POLICY", "same-origin"
         )
 
-        # Cross-Origin Embedder Policy
-        response["Cross-Origin-Embedder-Policy"] = getattr(
-            settings, "SECURE_CROSS_ORIGIN_EMBEDDER_POLICY", "require-corp"
-        )
+        # Cross-Origin Embedder Policy - disable in DEBUG for CDN compatibility
+        if settings.DEBUG:
+            response["Cross-Origin-Embedder-Policy"] = "credentialless"
+        else:
+            response["Cross-Origin-Embedder-Policy"] = getattr(
+                settings, "SECURE_CROSS_ORIGIN_EMBEDDER_POLICY", "require-corp"
+            )
 
         # Referrer Policy
         response["Referrer-Policy"] = getattr(
