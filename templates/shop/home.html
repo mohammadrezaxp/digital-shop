@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}خانه - دیجیتال شاپ{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+12|    tailwind.config = {
+13|      theme: {
+14|        extend: {
+15|          fontFamily: {
+16|            sans: ['Vazirmatn', 'sans-serif'],
+17|          },
+18|          colors: {
+19|            'brand-blue': '#0052FF',
+20|            'brand-dark': '#0B132B',
+21|            'brand-gray': '#4B5563',
+22|            'brand-light-blue': '#E5EDFF',
+23|          },
+24|          backgroundImage: {
+25|            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+26|            'sky-gradient': 'linear-gradient(180deg, #E0F2FE 0%, #FFFFFF 100%)',
+27|          }
+28|        }
+29|      }
+30|    }
+31|
+</script>
+{% endblock %}
+
+{% block content %}
+<canvas class="fixed inset-0 w-full h-full z-[-2] pointer-events-none" id="bg-canvas" width="1280" height="954"></canvas>
+83|<!-- Top Badge -->
+84|<div class="inline-flex items-center gap-2 bg-gray-50 border border-gray-100 rounded-full py-1.5 px-4 mb-8">
+85|<span class="text-xs font-medium text-gray-500">برای توسعه‌دهندگان، تیم‌ها و آژانس‌ها</span>
+86|<svg class="text-gray-400 rotate-180" fill="none" height="12" viewBox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg">
+87|<path d="M9 18L15 12L9 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+88|</svg>
+89|</div>
+90|<!-- Main Heading -->
+91|<h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.1] tracking-tight mb-6 max-w-4xl text-shadow-sm" style="font-family: serif;">
+92|        دنیای ابزارهای دیجیتال<br></h1>
+93|<!-- Subheading -->
+94|
+95|<!-- Call to Action Buttons -->
+96|<div class="flex flex-col sm:flex-row items-center gap-4 mb-24">
+97|<a class="bg-brand-blue hover:bg-blue-600 text-white font-medium py-3 px-8 rounded-full shadow-[0_4px_14px_0_rgba(0,82,255,0.39)] hover:shadow-[0_6px_20px_rgba(0,82,255,0.23)] transition-all flex items-center gap-2" href="#">
+98|          شروع کنید
+99|          <svg class="rotate-180" fill="none" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+100|<path d="M9 18L15 12L9 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+101|</svg>
+102|</a>
+103|<a class="bg-white hover:bg-gray-50 text-brand-dark border border-gray-200 font-medium py-3 px-8 rounded-full shadow-sm transition-all flex items-center gap-2" href="#">
+104|          برای چه کسانی است؟
+105|          <svg class="rotate-180" fill="none" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+106|<path d="M9 18L15 12L9 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+107|</svg>
+108|</a>
+109|</div>
+110|<!-- BEGIN: Dashboard Preview Wrapper -->
+111|<div class="w-full max-w-5xl mx-auto relative mt-auto" data-purpose="dashboard-preview-container">
+112|<!-- Abstract Blue Cloud/Glow Background -->
+113|<div class="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[120%] h-[300px] bg-blue-400 opacity-20 blur-[80px] rounded-full z-0 pointer-events-none"></div>
+114|<div class="absolute -bottom-10 left-1/4 w-1/2 h-[200px] bg-brand-blue opacity-30 blur-[100px] rounded-full z-0 pointer-events-none"></div>
+115|<!-- Tooltip/Floating Label -->
+116|
+117|<!-- Fake Dashboard UI -->
+118|<div class="dashboard-preview rounded-t-[2rem] border border-white/50 border-b-0 w-full h-[150px] overflow-hidden flex flex-col relative z-10">
+119|<!-- Dashboard Header -->
+120|
+121|<!-- Dashboard Content Area (Empty for effect) -->
+122|<div class="flex-grow bg-white/20"></div>
+123|</div>
+124|</div>
+125|<!-- END: Dashboard Preview Wrapper -->
+126|
+{% endblock %}

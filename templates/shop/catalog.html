@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}کاتالوگ محصولات - دیجیتال شاپ{% endblock %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="flex flex-col items-center text-center gap-unit mb-12">
+<h1 class="font-display-lg text-display-lg text-surface">کاتالوگ ابزارهای دیجیتال</h1>
+<p class="font-body-md text-body-md text-surface/60 max-w-2xl mt-4">بهترین ابزارهای پریمیوم، اکانت‌های هوش مصنوعی و سرویس‌های گیمینگ را در یک فضای مدرن و امن تجربه کنید.</p>
+</section>
+<!-- Filters Section -->
+<section class="flex flex-wrap justify-center gap-4 mb-16">
+<button class="px-6 py-2 rounded-full border border-outline-variant/20 text-surface/60 font-label-mono text-label-mono hover:bg-secondary/10 transition-colors">
+                همه
+            </button>
+<button class="px-6 py-2 rounded-full border border-outline-variant/20 text-surface/60 font-label-mono text-label-mono hover:bg-secondary/10 transition-colors">
+                گیمینگ
+            </button>
+<button class="px-6 py-2 rounded-full border border-outline-variant/20 text-surface/60 font-label-mono text-label-mono hover:bg-secondary/10 transition-colors">
+                هوش مصنوعی
+            </button>
+<button class="px-6 py-2 rounded-full border border-outline-variant/20 text-surface/60 font-label-mono text-label-mono hover:bg-secondary/10 transition-colors">
+                فیلترشکن
+            </button>
+<button class="px-6 py-2 rounded-full border border-outline-variant/20 text-surface/60 font-label-mono text-label-mono hover:bg-secondary/10 transition-colors">
+                برنامه‌ها
+            </button>
+</section>
+<!-- Gaming Category -->
+<h2 class="font-headline-md text-headline-md text-surface mb-6 mt-8 border-b border-outline-variant/20 pb-2">گیمینگ</h2>
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-12">
+<!-- Product Card -->
+<article class="bg-white/80 backdrop-blur-sm rounded-lg p-8 flex flex-col gap-6 relative overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300 border border-outline-variant/10">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-colors duration-500"></div>
+<div class="flex justify-between items-start">
+<img alt="Steam Logo" class="w-16 h-16 rounded-full object-cover border border-outline-variant/20 shadow-md group-hover:scale-110 transition-transform duration-500" src="{% static 'images/logos/steam.png' %}" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);"/>
+<span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-mono text-label-mono border border-outline-variant/10">گیمینگ</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-surface mb-2">گیفت کارت Steam</h3>
+<p class="font-body-md text-body-md text-surface/60 line-clamp-2">شارژ حساب استیم با ریجن‌های مختلف برای خرید بازی‌های روز دنیا.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/20 flex justify-between items-center">
+<span class="font-headline-md text-headline-md text-secondary text-sm md:text-base">از ۵۰۰,۰۰۰ تومان</span>
+<button class="btn-glow px-4 md:px-6 py-2 rounded-lg text-on-primary-fixed font-bold font-body-md text-body-md text-sm md:text-base">خرید</button>
+</div>
+</article>
+<!-- Product Card -->
+<article class="bg-white/80 backdrop-blur-sm rounded-lg p-8 flex flex-col gap-6 relative overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300 border border-outline-variant/10">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-secondary/20 rounded-full blur-3xl group-hover:bg-secondary/30 transition-colors duration-500"></div>
+<div class="flex justify-between items-start">
+<img alt="PlayStation Plus Logo" class="w-16 h-16 rounded-full object-cover border border-outline-variant/20 shadow-md group-hover:scale-110 transition-transform duration-500" src="{% static 'images/logos/playstation.png' %}" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);"/>
+<span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-mono text-label-mono border border-outline-variant/10">گیمینگ</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-surface mb-2">PlayStation Plus</h3>
+<p class="font-body-md text-body-md text-surface/60 line-clamp-2">اشتراک پلی‌استیشن پلاس برای بازی‌های آنلاین و دانلود بازی‌های رایگان ماهانه.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/20 flex justify-between items-center">
+<span class="font-headline-md text-headline-md text-secondary text-sm md:text-base">از ۶۰۰,۰۰۰ تومان</span>
+<button class="btn-glow px-4 md:px-6 py-2 rounded-lg text-on-primary-fixed font-bold font-body-md text-body-md text-sm md:text-base">خرید</button>
+</div>
+</article>
+<!-- Product Card -->
+<article class="bg-white/80 backdrop-blur-sm rounded-lg p-8 flex flex-col gap-6 relative overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300 border border-outline-variant/10">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-tertiary/20 rounded-full blur-3xl group-hover:bg-tertiary/30 transition-colors duration-500"></div>
+<div class="flex justify-between items-start">
+<img alt="Xbox Game Pass Logo" class="w-16 h-16 rounded-full object-cover border border-outline-variant/20 shadow-md group-hover:scale-110 transition-transform duration-500" src="{% static 'images/logos/xbox.png' %}" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);"/>
+<span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-mono text-label-mono border border-outline-variant/10">گیمینگ</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-surface mb-2">Xbox Game Pass</h3>
+<p class="font-body-md text-body-md text-surface/60 line-clamp-2">دسترسی به صدها بازی با کیفیت بالا برای کنسول و کامپیوتر.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/20 flex justify-between items-center">
+<span class="font-headline-md text-headline-md text-secondary text-sm md:text-base">از ۴۵۰,۰۰۰ تومان</span>
+<button class="btn-glow px-4 md:px-6 py-2 rounded-lg text-on-primary-fixed font-bold font-body-md text-body-md text-sm md:text-base">خرید</button>
+</div>
+</article>
+<!-- Product Card -->
+<article class="bg-white/80 backdrop-blur-sm rounded-lg p-8 flex flex-col gap-6 relative overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300 border border-outline-variant/10">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-tertiary/20 rounded-full blur-3xl group-hover:bg-tertiary/30 transition-colors duration-500"></div>
+<div class="flex justify-between items-start">
+<img alt="Nintendo eShop Logo" class="w-16 h-16 rounded-full object-cover border border-outline-variant/20 shadow-md group-hover:scale-110 transition-transform duration-500" src="{% static 'images/logos/nintendo.png' %}" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);"/>
+<span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-mono text-label-mono border border-outline-variant/10">گیمینگ</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-surface mb-2">Nintendo eShop</h3>
+<p class="font-body-md text-body-md text-surface/60 line-clamp-2">گیفت کارت نینتندو برای خرید بازی‌های انحصاری سوییچ.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/20 flex justify-between items-center">
+<span class="font-headline-md text-headline-md text-secondary text-sm md:text-base">از ۵۵۰,۰۰۰ تومان</span>
+<button class="btn-glow px-4 md:px-6 py-2 rounded-lg text-on-primary-fixed font-bold font-body-md text-body-md text-sm md:text-base">خرید</button>
+</div>
+</article>
+{% endblock %}

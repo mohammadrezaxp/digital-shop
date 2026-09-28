@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ورود - دیجیتال شاپ{% endblock %}
+
+{% block content %}
+<!-- Brand / Logo Area -->
+<div class="text-center mb-stack-gap animate-float" style="animation-duration: 8s;">
+<div class="inline-block p-4 rounded-full glass-panel mb-4">
+<span class="material-symbols-outlined text-display-lg-mobile text-primary" style="font-variation-settings: 'FILL' 1;">
+                    storefront
+                </span>
+</div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary font-bold tracking-tight">
+                دیجیتال شاپ
+            </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+                ورود به دنیای تکنولوژی
+            </p>
+</div>
+<!-- Auth Card -->
+<div class="glass-panel rounded-xl p-8 spring-transition w-full shadow-lg relative overflow-hidden group">
+<!-- Subtle top accent line -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 text-center font-bold">
+                ورود به حساب کاربری
+            </h2>
+<form class="space-y-6">
+<!-- Email Field -->
+<div>
+<label class="block font-body-md text-body-md text-on-surface-variant mb-2" for="email">ایمیل</label>
+<div class="relative">
+<span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+<span class="material-symbols-outlined text-outline">mail</span>
+</span>
+<input class="cyber-input w-full bg-surface-container-high border border-outline-variant rounded-lg py-3 pl-4 pr-10 text-on-surface font-body-md text-body-md placeholder-outline-variant spring-transition" dir="ltr" id="email" name="email" placeholder="ایمیل خود را وارد کنید" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="block font-body-md text-body-md text-on-surface-variant" for="password">رمز عبور</label>
+<a class="font-label-mono text-label-mono text-secondary hover:text-secondary-fixed transition-colors" href="#">فراموشی رمز عبور؟</a>
+</div>
+<div class="relative">
+<span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+<span class="material-symbols-outlined text-outline">lock</span>
+</span>
+<input class="cyber-input w-full bg-surface-container-high border border-outline-variant rounded-lg py-3 pl-10 pr-10 text-on-surface font-body-md text-body-md placeholder-outline-variant spring-transition" dir="ltr" id="password" name="password" placeholder="••••••••" type="password"/>
+<button class="absolute inset-y-0 left-0 flex items-center pl-3 text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Remember Me & Submit -->
+<div class="flex items-center justify-between mt-6">
+<label class="flex items-center space-x-2 space-x-reverse cursor-pointer group">
+<div class="relative flex items-center justify-center w-5 h-5 rounded border border-outline-variant group-hover:border-primary transition-colors bg-surface-container">
+<input class="peer sr-only" type="checkbox"/>
+<span class="material-symbols-outlined text-primary text-sm opacity-0 peer-checked:opacity-100 transition-opacity absolute pointer-events-none" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">مرا به خاطر بسپار</span>
+</label>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-4 mt-6 rounded-lg bg-gradient-to-r from-primary to-inverse-primary text-on-primary font-headline-md text-headline-md font-bold spring-transition btn-glow flex justify-center items-center gap-2" type="submit">
+<span>ورود به حساب</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">login</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="relative flex items-center py-6">
+<div class="flex-grow border-t border-outline-variant/30"></div>
+<span class="flex-shrink-0 mx-4 font-label-mono text-label-mono text-outline-variant">یا</span>
+<div class="flex-grow border-t border-outline-variant/30"></div>
+</div>
+<!-- Social Login (Optional addition for modern feel) -->
+<div class="grid grid-cols-2 gap-4 mb-6">
+<button class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-surface-container-high border border-outline-variant/50 hover:bg-surface-variant hover:border-outline transition-all duration-300">
+<span class="font-body-md text-body-md text-on-surface">Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-surface-container-high border border-outline-variant/50 hover:bg-surface-variant hover:border-outline transition-all duration-300">
+<span class="font-body-md text-body-md text-on-surface">Apple</span>
+</button>
+</div>
+<!-- Sign Up Link -->
+<p class="text-center font-body-md text-body-md text-on-surface-variant mt-4">
+                حساب کاربری ندارید؟
+                <a class="text-primary font-bold hover:text-primary-fixed transition-colors underline decoration-primary/30 underline-offset-4 hover:decoration-primary" href="{% url 'shop:signup' %}">ثبت‌نام</a>
+</p>
+</div>
+<!-- Back to Home Link (Subtle) -->
+<div class="text-center mt-8">
+<a class="inline-flex items-center gap-2 font-body-md text-body-md text-outline hover:text-on-surface transition-colors group" href="{% url 'shop:home' %}">
+<span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform rtl:group-hover:translate-x-1">arrow_back</span>
+                بازگشت به صفحه اصلی
+            </a>
+</div>
+{% endblock %}

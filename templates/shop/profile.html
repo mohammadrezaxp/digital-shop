@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}پنل کاربری | Digital Shop{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="mb-stack-gap">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2">پنل کاربری</h1>
+<p class="text-on-surface-variant font-body-md text-body-md">مدیریت حساب، اشتراک‌ها و تنظیمات امنیتی شما.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Sidebar: User Profile & Settings (Col span 4) -->
+<aside class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Profile Card -->
+<div class="glass-panel rounded-xl p-8 flex flex-col items-center text-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-primary to-secondary mb-4 relative z-10 shadow-[0_0_20px_rgba(192,193,255,0.2)]">
+<img class="w-full h-full object-cover rounded-full border-2 border-surface-container" data-alt="A high-quality, futuristic digital portrait of a young professional male in a cyberpunk setting. He is wearing a sleek, dark tech-wear jacket with subtle neon blue accents. The lighting is dramatic, with cool cyan and deep indigo tones reflecting on his face, creating a floating, high-tech glassmorphism aesthetic. The background is a deeply blurred, dark futuristic cityscape." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdDb3XyIzgzR_iw-DGNM0cjch_9Xglcp98HHeinAUkz5lxApqay70CkVxvZ3tcXu-Vp655wRaoHnmKCTgKMD8ER-yKFhJXZBD6bBZjF0dH0fPoCuRXFcacQ5Gc9hoAfDL8Q8NNPCXT-mBc8w4hZ-HK1ySHwjlMOs4mwrnYmBlrn7XR8uje2H2WoNveYVEOy6yVoqtsMU1aMbeYBuCBZgeO90z0ijY6cZ275olrynGECrJ86tcKVYe1"/>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1 z-10">امیرعلی راد</h2>
+<p class="font-label-mono text-label-mono text-secondary mb-4 z-10">amirali.rad@example.com</p>
+<div class="inline-flex items-center gap-2 bg-surface-container-highest rounded-full px-4 py-2 mt-2 z-10 border border-outline-variant/20">
+<span class="material-symbols-outlined text-[16px] text-tertiary">verified</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant">عضویت از مهر ۱۴۰۲</span>
+</div>
+</div>
+<!-- Settings Navigation -->
+<div class="glass-panel rounded-xl overflow-hidden flex flex-col">
+<div class="p-6 border-b border-outline-variant/10">
+<h3 class="font-body-md text-body-md text-on-surface-variant uppercase tracking-wider text-sm opacity-80">تنظیمات حساب</h3>
+</div>
+<div class="flex flex-col p-2">
+<a class="flex items-center justify-between p-4 rounded-lg hover:bg-surface-container-high transition-colors group cursor-pointer" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">lock</span>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">تغییر رمز عبور</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_left</span>
+</a>
+<a class="flex items-center justify-between p-4 rounded-lg hover:bg-surface-container-high transition-colors group cursor-pointer" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">mail</span>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">تنظیمات ایمیل</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_left</span>
+</a>
+<a class="flex items-center justify-between p-4 rounded-lg hover:bg-surface-container-high transition-colors group cursor-pointer" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">notifications</span>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">اطلاع‌رسانی‌ها</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_left</span>
+</a>
+</div>
+<div class="p-4 border-t border-outline-variant/10 mt-auto">
+<button class="w-full flex items-center justify-center gap-2 p-3 rounded-lg text-error hover:bg-error/10 transition-colors font-body-md text-body-md cursor-pointer">
+<span class="material-symbols-outlined">logout</span>
+                            خروج از حساب
+                        </button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area (Col span 8) -->
+<div class="lg:col-span-8 flex flex-col gap-stack-gap">
+<!-- Subscriptions Bento Grid -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">subscriptions</span>
+                            اشتراک‌های فعال
+                        </h2>
+<a class="font-label-mono text-label-mono text-primary hover:text-secondary transition-colors" href="#">مشاهده همه</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Subscription Card 1 -->
+<div class="glass-panel glass-panel-hover rounded-xl p-6 flex flex-col justify-between min-h-[200px] transition-all duration-300 cubic-bezier(0.34,1.56,0.64,1) relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-red-500/10 blur-[40px] rounded-full pointer-events-none"></div>
+<div class="flex justify-between items-start z-10 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-[28px] text-white">play_circle</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md font-bold text-on-surface">YouTube Premium</h3>
+<p class="font-label-mono text-label-mono text-on-surface-variant mt-1">طرح خانواده</p>
+</div>
+</div>
+<span class="bg-tertiary/10 text-tertiary border border-tertiary/20 px-3 py-1 rounded-full font-label-mono text-label-mono flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> فعال
+                                </span>
+</div>
+<div class="mt-auto z-10 flex items-end justify-between border-t border-outline-variant/10 pt-4">
+<div>
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-1">تاریخ تمدید بعدی</p>
+<p class="font-body-md text-body-md text-on-surface">۲۵ آبان ۱۴۰۳</p>
+</div>
+<button class="glow-button bg-gradient-to-r from-primary to-inverse-primary text-on-primary font-body-md text-body-md px-6 py-2 rounded-lg font-bold">
+                                    مدیریت
+                                </button>
+</div>
+</div>
+<!-- Subscription Card 2 -->
+<div class="glass-panel glass-panel-hover rounded-xl p-6 flex flex-col justify-between min-h-[200px] transition-all duration-300 cubic-bezier(0.34,1.56,0.64,1) relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-[40px] rounded-full pointer-events-none"></div>
+<div class="flex justify-between items-start z-10 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-[28px] text-white">smart_toy</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md font-bold text-on-surface">ChatGPT Plus</h3>
+<p class="font-label-mono text-label-mono text-on-surface-variant mt-1">طرح ماهانه</p>
+</div>
+</div>
+<span class="bg-tertiary/10 text-tertiary border border-tertiary/20 px-3 py-1 rounded-full font-label-mono text-label-mono flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> فعال
+                                </span>
+</div>
+<div class="mt-auto z-10 flex items-end justify-between border-t border-outline-variant/10 pt-4">
+<div>
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-1">تاریخ تمدید بعدی</p>
+<p class="font-body-md text-body-md text-on-surface">۱۲ آذر ۱۴۰۳</p>
+</div>
+<button class="glow-button bg-surface-container-high hover:bg-surface-bright border border-outline-variant/30 text-on-surface font-body-md text-body-md px-6 py-2 rounded-lg transition-colors">
+                                    مدیریت
+                                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Purchase History Section -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">history</span>
+                            تاریخچه تراکنش‌ها
+                        </h2>
+</div>
+<div class="glass-panel rounded-xl overflow-hidden">
+<!-- Table Header (Hidden on mobile, flex on md) -->
+<div class="hidden md:grid grid-cols-12 gap-4 p-4 border-b border-outline-variant/20 bg-surface-container-highest/30 font-label-mono text-label-mono text-on-surface-variant uppercase">
+<div class="col-span-5">سرویس / محصول</div>
+<div class="col-span-3 text-center">تاریخ</div>
+<div class="col-span-2 text-left">مبلغ (تومان)</div>
+<div class="col-span-2 text-center">وضعیت</div>
+</div>
+<!-- Table Body -->
+<div class="flex flex-col">
+<!-- Transaction Row 1 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 items-center border-b border-outline-variant/10 hover:bg-surface-container-high/50 transition-colors">
+<div class="col-span-1 md:col-span-5 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[20px]">music_note</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-bold">Spotify Premium</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant md:hidden mt-1">۱۴۰۳/۰۶/۱۰ - ۵۰۰,۰۰۰ تومان</p>
+</div>
+</div>
+<div class="hidden md:block col-span-3 text-center font-label-mono text-label-mono text-on-surface-variant">۱۴۰۳/۰۶/۱۰</div>
+<div class="hidden md:block col-span-2 text-left font-label-mono text-label-mono text-on-surface font-bold">۵۰۰,۰۰۰</div>
+<div class="col-span-1 md:col-span-2 flex justify-start md:justify-center">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-tertiary-container/10 border border-tertiary/20 text-tertiary font-label-mono text-[10px]">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> موفق
+                                    </span>
+</div>
+</div>
+<!-- Transaction Row 2 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 items-center border-b border-outline-variant/10 hover:bg-surface-container-high/50 transition-colors">
+<div class="col-span-1 md:col-span-5 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-error text-[20px]">movie</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-bold">Netflix Basic</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant md:hidden mt-1">۱۴۰۳/۰۵/۱۵ - ۷۵۰,۰۰۰ تومان</p>
+</div>
+</div>
+<div class="hidden md:block col-span-3 text-center font-label-mono text-label-mono text-on-surface-variant">۱۴۰۳/۰۵/۱۵</div>
+<div class="hidden md:block col-span-2 text-left font-label-mono text-label-mono text-on-surface font-bold">۷۵۰,۰۰۰</div>
+<div class="col-span-1 md:col-span-2 flex justify-start md:justify-center">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-tertiary-container/10 border border-tertiary/20 text-tertiary font-label-mono text-[10px]">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> موفق
+                                    </span>
+</div>
+</div>
+<!-- Transaction Row 3 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 items-center hover:bg-surface-container-high/50 transition-colors opacity-70">
+<div class="col-span-1 md:col-span-5 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-outline text-[20px]">vpn_key</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-bold">NordVPN Annual</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant md:hidden mt-1">۱۴۰۳/۰۴/۰۲ - ۱,۲۰۰,۰۰۰ تومان</p>
+</div>
+</div>
+<div class="hidden md:block col-span-3 text-center font-label-mono text-label-mono text-on-surface-variant">۱۴۰۳/۰۴/۰۲</div>
+<div class="hidden md:block col-span-2 text-left font-label-mono text-label-mono text-on-surface font-bold">۱,۲۰۰,۰۰۰</div>
+<div class="col-span-1 md:col-span-2 flex justify-start md:justify-center">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-highest border border-outline-variant/30 text-on-surface-variant font-label-mono text-[10px]">
+<span class="material-symbols-outlined text-[14px]">cancel</span> منقضی شده
+                                    </span>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-outline-variant/10 text-center">
+<button class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-surface-container-highest">مشاهده تاریخچه کامل</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+{% endblock %}

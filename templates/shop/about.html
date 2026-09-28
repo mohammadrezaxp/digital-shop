@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}درباره ما و تماس با ما - دیجیتال شاپ{% endblock %}
+
+{% block content %}
+<!-- Section 1: About Us -->
+<section class="space-y-stack-gap text-center max-w-3xl mx-auto py-12">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-gray-900">
+                درباره ما
+            </h1>
+<p class="font-body-md text-body-md text-gray-600 leading-relaxed">
+                ما تیمی از متخصصان خلاق و پرشور هستیم که با هدف ارائه بهترین تجربه خرید دیجیتال گرد هم آمده‌ایم. چشم‌انداز ما ایجاد فضایی مدرن، سریع و امن برای دسترسی به جدیدترین تکنولوژی‌هاست.
+            </p>
+<!-- Team Avatars (Floating Bento Style) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter pt-stack-gap">
+<!-- Member 1 -->
+<div class="white-card rounded-[3rem] p-unit flex flex-col items-center gap-unit transition-all duration-300">
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md relative mt-[-24px]">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a young professional" src="{% static 'images/logos/about_ali.png' %}">
+</div>
+<div class="pb-unit">
+<h3 class="font-headline-md text-headline-md text-gray-900 text-sm">علی رضایی</h3>
+<p class="font-label-mono text-label-mono text-primary">مدیر عامل</p>
+</div>
+</div>
+<!-- Member 2 -->
+<div class="white-card rounded-[3rem] p-unit flex flex-col items-center gap-unit transition-all duration-300 md:translate-y-4">
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md relative mt-[-24px]">
+<img class="w-full h-full object-cover" data-alt="A portrait of a creative designer" src="{% static 'images/logos/about_sara.png' %}">
+</div>
+<div class="pb-unit">
+<h3 class="font-headline-md text-headline-md text-gray-900 text-sm">سارا احمدی</h3>
+<p class="font-label-mono text-label-mono text-secondary">طراح ارشد</p>
+</div>
+</div>
+<!-- Member 3 -->
+<div class="white-card rounded-[3rem] p-unit flex flex-col items-center gap-unit transition-all duration-300">
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md relative mt-[-24px]">
+<img class="w-full h-full object-cover" data-alt="A portrait of an AI engineer" src="{% static 'images/logos/about_omid.png' %}">
+</div>
+<div class="pb-unit">
+<h3 class="font-headline-md text-headline-md text-gray-900 text-sm">امید کریمی</h3>
+<p class="font-label-mono text-label-mono text-[#00a755]">توسعه دهنده</p>
+</div>
+</div>
+<!-- Member 4 -->
+<div class="white-card rounded-[3rem] p-unit flex flex-col items-center gap-unit transition-all duration-300 md:translate-y-4">
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md relative mt-[-24px]">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a marketing specialist" src="{% static 'images/logos/about_maryam.png' %}">
+</div>
+<div class="pb-unit">
+<h3 class="font-headline-md text-headline-md text-gray-900 text-sm">مریم نجفی</h3>
+<p class="font-label-mono text-label-mono text-primary">مارکتینگ</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Contact Us -->
+<section class="max-w-2xl mx-auto w-full">
+<div class="white-card rounded-[3rem] p-margin-mobile md:p-margin-desktop transition-all duration-300">
+<div class="text-center mb-stack-gap">
+<h2 class="font-headline-md text-headline-md text-gray-900 mb-unit">تماس با ما</h2>
+<p class="font-body-md text-body-md text-gray-600">نظرات، پیشنهادات یا سوالات خود را با ما در میان بگذارید.</p>
+</div>
+<form class="space-y-gutter">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="space-y-unit">
+<label class="font-label-mono text-label-mono text-gray-600 block">نام شما</label>
+<input class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-gray-900 font-body-md text-body-md focus:outline-none input-light transition-all duration-200" placeholder="نام کامل" type="text">
+</div>
+<div class="space-y-unit">
+<label class="font-label-mono text-label-mono text-gray-600 block">ایمیل</label>
+<input class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-gray-900 font-body-md text-body-md focus:outline-none input-light transition-all duration-200" placeholder="ایمیل آدرس" type="email">
+</div>
+</div>
+<div class="space-y-unit">
+<label class="font-label-mono text-label-mono text-gray-600 block">پیام شما</label>
+<textarea class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-gray-900 font-body-md text-body-md focus:outline-none input-light transition-all duration-200 resize-none" placeholder="متن پیام خود را اینجا بنویسید..." rows="5"></textarea>
+</div>
+<button class="w-full glow-button rounded-full py-4 font-headline-md text-headline-md text-white flex justify-center items-center gap-unit" type="button">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+                        ارسال پیام
+                    </button>
+</form>
+</div>
+</section>
+{% endblock %}

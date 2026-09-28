@@ -1,0 +1,43 @@
+[SECURITY] 2026-09-28 03:07:12,688 ERROR Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\utils\deprecation.py", line 440, in __call__
+    response = self.process_request(request)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\http\request.py", line 210, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+[SECURITY] 2026-09-28 03:07:26,422 ERROR Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\utils\deprecation.py", line 440, in __call__
+    response = self.process_request(request)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\http\request.py", line 210, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+[SECURITY] 2026-09-28 03:08:05,192 ERROR Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\utils\deprecation.py", line 440, in __call__
+    response = self.process_request(request)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\http\request.py", line 210, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+[SECURITY] 2026-09-28 03:25:20,893 ERROR Internal Server Error: /api/auth/2fa/setup/
+[SECURITY] 2026-09-28 03:36:08,387 ERROR Internal Server Error: /api/settings/
+[SECURITY] 2026-09-28 23:00:38,923 WARNING Validation/Integrity error: UNIQUE constraint failed: shop_wallet.user_id
+[SECURITY] 2026-09-28 23:43:44,531 ERROR Internal Server Error: /api/schema/
+[SECURITY] 2026-09-28 23:44:49,268 ERROR Internal Server Error: /api/schema/
+[SECURITY] 2026-09-28 23:45:35,848 ERROR Internal Server Error: /api/schema/
+[SECURITY] 2026-09-28 23:50:11,708 ERROR Internal Server Error: /api/schema/
+[SECURITY] 2026-09-28 23:51:17,467 ERROR Internal Server Error: /api/schema/
+[SECURITY] 2026-09-28 23:51:43,224 ERROR Internal Server Error: /api/schema/
+[SECURITY] 2026-09-28 23:52:47,716 ERROR Internal Server Error: /api/schema/

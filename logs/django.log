@@ -1,0 +1,507 @@
+INFO 2026-09-28 02:39:17,053 autoreload 8696 13896 Watching for file changes with StatReloader
+INFO 2026-09-28 02:50:56,190 autoreload 8696 13896 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\config\settings.py changed, reloading.
+INFO 2026-09-28 02:50:57,554 autoreload 808 15272 Watching for file changes with StatReloader
+INFO 2026-09-28 02:51:25,791 autoreload 808 15272 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\config\settings.py changed, reloading.
+INFO 2026-09-28 02:51:27,181 autoreload 17084 20324 Watching for file changes with StatReloader
+INFO 2026-09-28 02:52:31,598 autoreload 17084 20324 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\shop\migrations\0001_initial.py changed, reloading.
+INFO 2026-09-28 02:52:32,746 autoreload 5380 10056 Watching for file changes with StatReloader
+INFO 2026-09-28 02:55:19,465 autoreload 5380 10056 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\shop\models.py changed, reloading.
+INFO 2026-09-28 02:55:20,607 autoreload 19208 18352 Watching for file changes with StatReloader
+INFO 2026-09-28 02:55:30,957 autoreload 19208 18352 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\shop\migrations\0001_initial.py changed, reloading.
+INFO 2026-09-28 02:55:32,231 autoreload 22264 19044 Watching for file changes with StatReloader
+INFO 2026-09-28 02:57:09,697 log 22264 17872 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 02:57:15,355 log 22264 7228 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 02:57:21,095 log 22264 11780 "GET /api/products HTTP/1.1" 301 0
+INFO 2026-09-28 02:57:30,814 log 22264 15724 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 02:57:35,430 log 22264 14424 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 02:57:41,569 log 22264 15976 code 400, message Bad request version ("=\xdd/\\x95\\x03\xceP\\x8d8Q\\x03(\\x8bq\xa9\\\\=\\x10qzg\xd4\\x17\\x18)\xe4%\\x16f\xfc*%\\x00(\\x13\\x02\\x13\\x01\xc0,\xc0+\xc00\xc0/\xc0$\xc0#\xc0(\xc0'\xc0")
+ERROR 2026-09-28 02:57:41,569 log 22264 15976 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-09-28 02:57:48,469 log 22264 17480 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 02:58:12,720 log 22264 16640 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 02:58:22,680 log 22264 21300 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 02:59:13,151 log 22264 8540 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 02:59:18,667 log 22264 16852 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 03:01:03,233 log 22264 7016 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 03:01:46,278 log 22264 9736 "GET / HTTP/1.1" 301 0
+INFO 2026-09-28 03:03:07,298 log 22264 19052 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 03:03:56,780 log 22264 10492 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 03:05:58,679 log 22264 2632 "GET /api/products HTTP/1.1" 301 0
+INFO 2026-09-28 03:08:40,333 log 22264 9740 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 03:09:56,293 log 22264 12024 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 03:12:35,005 log 22264 18660 "GET /api/products/ HTTP/1.1" 301 0
+INFO 2026-09-28 03:15:38,704 log 20416 7352 "GET /api/products/ HTTP/1.1" 200 5149
+INFO 2026-09-28 03:15:44,259 log 20416 22196 "GET /api/categories/ HTTP/1.1" 200 1010
+INFO 2026-09-28 03:15:53,962 log 20416 4624 "POST /api/auth/login/ HTTP/1.1" 200 1003
+WARNING 2026-09-28 03:15:59,813 log 20416 12140 "GET /api/dashboard/ HTTP/1.1" 401 382
+INFO 2026-09-28 03:16:06,275 log 20416 10160 "POST /api/auth/login/ HTTP/1.1" 200 1003
+WARNING 2026-09-28 03:16:12,187 log 20416 22348 "GET /api/dashboard/ HTTP/1.1" 401 382
+WARNING 2026-09-28 03:16:19,640 log 20416 12276 "POST /api/auth/token/refresh/ HTTP/1.1" 404 19400
+INFO 2026-09-28 03:17:30,097 autoreload 22264 19044 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\config\urls.py changed, reloading.
+INFO 2026-09-28 03:17:31,830 autoreload 8536 14228 Watching for file changes with StatReloader
+INFO 2026-09-28 03:17:46,638 autoreload 8536 14228 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\config\urls.py changed, reloading.
+INFO 2026-09-28 03:17:47,846 autoreload 18488 7444 Watching for file changes with StatReloader
+INFO 2026-09-28 03:19:01,686 autoreload 18488 7444 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\config\settings.py changed, reloading.
+INFO 2026-09-28 03:19:02,688 autoreload 4072 16564 Watching for file changes with StatReloader
+INFO 2026-09-28 03:20:12,173 autoreload 4072 16564 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\shop\views.py changed, reloading.
+INFO 2026-09-28 03:20:13,125 autoreload 19024 7840 Watching for file changes with StatReloader
+INFO 2026-09-28 03:20:20,861 autoreload 19024 7840 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\shop\views.py changed, reloading.
+INFO 2026-09-28 03:20:22,114 autoreload 9384 18216 Watching for file changes with StatReloader
+INFO 2026-09-28 03:20:53,288 autoreload 9384 18216 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\shop\views.py changed, reloading.
+INFO 2026-09-28 03:20:56,051 autoreload 3328 4980 Watching for file changes with StatReloader
+INFO 2026-09-28 03:21:04,177 autoreload 3328 4980 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\shop\views.py changed, reloading.
+INFO 2026-09-28 03:21:05,493 autoreload 6404 20072 Watching for file changes with StatReloader
+WARNING 2026-09-28 03:21:52,806 log 20416 3988 "GET /api/auth/2fa/setup/ HTTP/1.1" 404 19387
+WARNING 2026-09-28 03:22:32,188 log 20416 18484 "GET /api/auth/2fa/setup/ HTTP/1.1" 404 19387
+WARNING 2026-09-28 03:23:13,696 log 20416 11868 "GET /api/auth/2fa/setup/ HTTP/1.1" 404 19387
+ERROR 2026-09-28 03:25:20,884 exceptions 20732 13764 Unhandled exception: 'User' object has no attribute 'backup_codes'
+Traceback (most recent call last):
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\shop\views.py", line 527, in get
+    "backup_codes": user.backup_codes or [],
+                    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\utils\functional.py", line 253, in inner
+    return func(_wrapped, *args)
+AttributeError: 'User' object has no attribute 'backup_codes'
+INFO 2026-09-28 03:25:37,627 autoreload 6404 20072 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\shop\models.py changed, reloading.
+INFO 2026-09-28 03:25:39,077 autoreload 12224 7844 Watching for file changes with StatReloader
+WARNING 2026-09-28 03:27:41,742 log 20416 2852 "GET /api/auth/2fa/setup/ HTTP/1.1" 404 19387
+ERROR 2026-09-28 03:36:08,236 exceptions 16032 7132 Unhandled exception: Field name `default_currency` is not valid for model `SiteSettings` in `shop.serializers.SiteSettingsSerializer`.
+Traceback (most recent call last):
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\generics.py", line 212, in get
+    return self.retrieve(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 585, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 537, in to_representation
+    for field in fields:
+                 ^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 398, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 386, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1141, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1287, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1405, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `default_currency` is not valid for model `SiteSettings` in `shop.serializers.SiteSettingsSerializer`.
+INFO 2026-09-28 03:38:47,623 autoreload 12224 7844 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\shop\serializers.py changed, reloading.
+INFO 2026-09-28 03:38:49,058 autoreload 11460 11504 Watching for file changes with StatReloader
+INFO 2026-09-28 03:41:58,100 autoreload 11460 11504 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\shop\views.py changed, reloading.
+INFO 2026-09-28 03:41:59,143 autoreload 10084 360 Watching for file changes with StatReloader
+INFO 2026-09-28 03:42:16,145 log 20416 12512 "POST /api/auth/login/ HTTP/1.1" 200 1003
+INFO 2026-09-28 03:42:45,696 log 20416 6652 "POST /api/auth/login/ HTTP/1.1" 200 1003
+ERROR 2026-09-28 23:43:44,467 exceptions 11180 23532 Unhandled exception: Field name `completed_at` is not valid for model `Order` in `shop.serializers.OrderSerializer`.
+Traceback (most recent call last):
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 84, in get
+    return self._get_schema_response(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+         ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 287, in get_schema
+    paths=self.parse(request, public),
+          ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 258, in parse
+    operation = view.schema.get_operation(
+        path, path_regex, path_prefix, method, self.registry
+    )
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 113, in get_operation
+    operation['responses'] = self._get_response_bodies()
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1449, in _get_response_bodies
+    return {'200': self._get_response_for_code(response_serializers, '200', direction=direction)}
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1505, in _get_response_for_code
+    component = self.resolve_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1700, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+                       ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 990, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1083, in _map_basic_serializer
+    for field in serializer.fields.values():
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 386, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1141, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1287, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1405, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `completed_at` is not valid for model `Order` in `shop.serializers.OrderSerializer`.
+ERROR 2026-09-28 23:44:49,212 exceptions 10236 23076 Unhandled exception: Field name `metadata` is not valid for model `Order` in `shop.serializers.OrderSerializer`.
+Traceback (most recent call last):
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 84, in get
+    return self._get_schema_response(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+         ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 287, in get_schema
+    paths=self.parse(request, public),
+          ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 258, in parse
+    operation = view.schema.get_operation(
+        path, path_regex, path_prefix, method, self.registry
+    )
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 113, in get_operation
+    operation['responses'] = self._get_response_bodies()
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1449, in _get_response_bodies
+    return {'200': self._get_response_for_code(response_serializers, '200', direction=direction)}
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1505, in _get_response_for_code
+    component = self.resolve_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1700, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+                       ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 990, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1083, in _map_basic_serializer
+    for field in serializer.fields.values():
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 386, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1141, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1287, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1405, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `metadata` is not valid for model `Order` in `shop.serializers.OrderSerializer`.
+ERROR 2026-09-28 23:45:35,829 exceptions 9496 4692 Unhandled exception: Field name `delivery_data` is not valid for model `OrderItem` in `shop.serializers.OrderItemSerializer`.
+Traceback (most recent call last):
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 84, in get
+    return self._get_schema_response(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+         ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 287, in get_schema
+    paths=self.parse(request, public),
+          ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 258, in parse
+    operation = view.schema.get_operation(
+        path, path_regex, path_prefix, method, self.registry
+    )
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 101, in get_operation
+    request_body = self._get_request_body()
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1373, in _get_request_body
+    schema, partial_request_body_required = self._get_request_for_media_type(serializer, direction)
+                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1405, in _get_request_for_media_type
+    component = self.resolve_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1700, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+                       ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 990, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1089, in _map_basic_serializer
+    schema = self._map_serializer_field(field, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 705, in _map_serializer_field
+    schema = self._unwrap_list_serializer(field, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1481, in _unwrap_list_serializer
+    result = self._unwrap_list_serializer(serializer.child, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1478, in _unwrap_list_serializer
+    component = self.resolve_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1700, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+                       ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 990, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1083, in _map_basic_serializer
+    for field in serializer.fields.values():
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 386, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1141, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1287, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1405, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `delivery_data` is not valid for model `OrderItem` in `shop.serializers.OrderItemSerializer`.
+ERROR 2026-09-28 23:50:11,647 exceptions 4204 22784 Unhandled exception: Field name `started_at` is not valid for model `Subscription` in `shop.serializers.SubscriptionSerializer`.
+Traceback (most recent call last):
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 84, in get
+    return self._get_schema_response(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+         ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 287, in get_schema
+    paths=self.parse(request, public),
+          ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 258, in parse
+    operation = view.schema.get_operation(
+        path, path_regex, path_prefix, method, self.registry
+    )
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 113, in get_operation
+    operation['responses'] = self._get_response_bodies()
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1449, in _get_response_bodies
+    return {'200': self._get_response_for_code(response_serializers, '200', direction=direction)}
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1505, in _get_response_for_code
+    component = self.resolve_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1700, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+                       ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 990, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1083, in _map_basic_serializer
+    for field in serializer.fields.values():
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 386, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1141, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1287, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1405, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `started_at` is not valid for model `Subscription` in `shop.serializers.SubscriptionSerializer`.
+ERROR 2026-09-28 23:51:17,367 exceptions 22844 20456 Unhandled exception: Field name `delivery_content` is not valid for model `Subscription` in `shop.serializers.SubscriptionSerializer`.
+Traceback (most recent call last):
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 84, in get
+    return self._get_schema_response(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+         ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 287, in get_schema
+    paths=self.parse(request, public),
+          ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 258, in parse
+    operation = view.schema.get_operation(
+        path, path_regex, path_prefix, method, self.registry
+    )
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 113, in get_operation
+    operation['responses'] = self._get_response_bodies()
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1449, in _get_response_bodies
+    return {'200': self._get_response_for_code(response_serializers, '200', direction=direction)}
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1505, in _get_response_for_code
+    component = self.resolve_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1700, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+                       ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 990, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1083, in _map_basic_serializer
+    for field in serializer.fields.values():
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 386, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1141, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1287, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1405, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `delivery_content` is not valid for model `Subscription` in `shop.serializers.SubscriptionSerializer`.
+ERROR 2026-09-28 23:51:43,130 exceptions 1672 22688 Unhandled exception: Field name `balance_before` is not valid for model `WalletTransaction` in `shop.serializers.WalletTransactionSerializer`.
+Traceback (most recent call last):
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 84, in get
+    return self._get_schema_response(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+         ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 287, in get_schema
+    paths=self.parse(request, public),
+          ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 258, in parse
+    operation = view.schema.get_operation(
+        path, path_regex, path_prefix, method, self.registry
+    )
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 113, in get_operation
+    operation['responses'] = self._get_response_bodies()
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1449, in _get_response_bodies
+    return {'200': self._get_response_for_code(response_serializers, '200', direction=direction)}
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1505, in _get_response_for_code
+    component = self.resolve_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1700, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+                       ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 990, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1083, in _map_basic_serializer
+    for field in serializer.fields.values():
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 386, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1141, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1287, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1405, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `balance_before` is not valid for model `WalletTransaction` in `shop.serializers.WalletTransactionSerializer`.
+ERROR 2026-09-28 23:52:47,613 exceptions 22512 17152 Unhandled exception: Field name `link` is not valid for model `Notification` in `shop.serializers.NotificationSerializer`.
+Traceback (most recent call last):
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 84, in get
+    return self._get_schema_response(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+         ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 287, in get_schema
+    paths=self.parse(request, public),
+          ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\generators.py", line 258, in parse
+    operation = view.schema.get_operation(
+        path, path_regex, path_prefix, method, self.registry
+    )
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 113, in get_operation
+    operation['responses'] = self._get_response_bodies()
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1449, in _get_response_bodies
+    return {'200': self._get_response_for_code(response_serializers, '200', direction=direction)}
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1505, in _get_response_for_code
+    component = self.resolve_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1700, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+                       ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 990, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\drf_spectacular\openapi.py", line 1083, in _map_basic_serializer
+    for field in serializer.fields.values():
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 386, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1141, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1287, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mohammadreza\IdeaProjects\Digital_Shop\.venv\Lib\site-packages\rest_framework\serializers.py", line 1405, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `link` is not valid for model `Notification` in `shop.serializers.NotificationSerializer`.
