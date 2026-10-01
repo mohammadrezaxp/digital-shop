@@ -505,3 +505,58 @@ Traceback (most recent call last):
     ...<2 lines>...
     )
 django.core.exceptions.ImproperlyConfigured: Field name `link` is not valid for model `Notification` in `shop.serializers.NotificationSerializer`.
+INFO 2026-09-29 00:23:59,674 autoreload 23788 17672 Watching for file changes with StatReloader
+INFO 2026-09-29 00:24:02,563 log 23788 8608 "GET / HTTP/1.1" 200 7185
+WARNING 2026-09-29 00:24:10,160 log 23788 8608 "GET /favicon.ico HTTP/1.1" 404 7152
+INFO 2026-09-29 00:24:12,236 log 23788 8608 "GET / HTTP/1.1" 200 7185
+INFO 2026-09-29 00:24:14,758 log 23788 8608 "GET /about/ HTTP/1.1" 200 8656
+WARNING 2026-09-29 00:24:14,797 log 23788 19668 "GET /static/images/logos/about_sara.png HTTP/1.1" 404 2061
+WARNING 2026-09-29 00:24:14,797 log 23788 8608 "GET /static/images/logos/about_ali.png HTTP/1.1" 404 2058
+WARNING 2026-09-29 00:24:14,837 log 23788 15780 "GET /static/images/logos/about_omid.png HTTP/1.1" 404 2061
+WARNING 2026-09-29 00:24:14,845 log 23788 12252 "GET /static/images/logos/about_maryam.png HTTP/1.1" 404 2067
+INFO 2026-09-29 00:24:16,427 log 23788 24188 "GET /catalog/ HTTP/1.1" 200 11580
+INFO 2026-09-29 00:24:16,543 log 23788 24188 "GET /static/images/logos/steam.png HTTP/1.1" 200 869256
+INFO 2026-09-29 00:24:16,547 log 23788 22492 "GET /static/images/logos/playstation.png HTTP/1.1" 200 860942
+INFO 2026-09-29 00:24:16,589 log 23788 23944 "GET /static/images/logos/nintendo.png HTTP/1.1" 200 504654
+INFO 2026-09-29 00:24:16,596 log 23788 17472 "GET /static/images/logos/xbox.png HTTP/1.1" 200 717010
+INFO 2026-09-29 00:24:21,029 log 23788 17472 "GET /signup/ HTTP/1.1" 200 9323
+INFO 2026-09-29 00:24:22,674 log 23788 17472 "GET /login/ HTTP/1.1" 200 9232
+INFO 2026-09-29 00:24:43,431 log 23788 17472 "GET / HTTP/1.1" 200 7185
+INFO 2026-09-29 00:24:51,146 log 23788 17472 "GET /signup/ HTTP/1.1" 200 9323
+WARNING 2026-09-29 00:25:04,313 log 23788 17472 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7263
+INFO 2026-09-29 00:34:36,884 autoreload 23788 17672 C:\Users\mohammadreza\IdeaProjects\Digital_Shop\shop\middleware.py changed, reloading.
+INFO 2026-09-29 00:34:38,286 autoreload 14844 11356 Watching for file changes with StatReloader
+INFO 2026-09-29 00:39:56,554 autoreload 23768 24068 Watching for file changes with StatReloader
+INFO 2026-09-29 00:39:58,348 log 23768 16104 "GET / HTTP/1.1" 200 7185
+INFO 2026-09-29 00:40:07,810 log 23768 16104 "GET /login/ HTTP/1.1" 200 9232
+INFO 2026-09-29 00:40:13,543 log 23768 16104 "GET /login/ HTTP/1.1" 200 9232
+INFO 2026-09-29 00:40:15,083 log 23768 16104 "GET /catalog/ HTTP/1.1" 200 11580
+INFO 2026-09-29 00:40:21,470 log 23768 16104 "GET / HTTP/1.1" 200 7185
+WARNING 2026-09-29 00:40:25,022 log 23768 16104 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7263
+INFO 2026-09-29 00:50:09,050 autoreload 23284 16868 Watching for file changes with StatReloader
+INFO 2026-09-29 00:50:11,323 log 23284 15208 "GET / HTTP/1.1" 200 7150
+INFO 2026-09-29 00:50:11,476 log 23284 15208 "GET /static/css/custom.css HTTP/1.1" 200 3931
+INFO 2026-09-29 00:50:17,446 log 23284 15208 "GET / HTTP/1.1" 200 7150
+INFO 2026-09-29 00:50:19,464 log 23284 15208 "GET /catalog/ HTTP/1.1" 200 11545
+INFO 2026-09-29 00:50:24,841 log 23284 15208 "GET /profile/ HTTP/1.1" 302 0
+INFO 2026-09-29 00:50:24,847 log 23284 15208 "GET /login/?next=/profile/ HTTP/1.1" 200 9197
+WARNING 2026-09-29 00:50:30,186 log 23284 15208 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7263
+INFO 2026-09-29 01:12:19,449 autoreload 23868 23448 Watching for file changes with StatReloader
+INFO 2026-09-29 01:12:21,498 log 23868 16360 "GET / HTTP/1.1" 200 7150
+INFO 2026-09-29 01:12:21,624 log 23868 16360 "GET /static/css/custom.css HTTP/1.1" 200 3427
+INFO 2026-09-29 01:12:27,345 log 23868 16360 "GET /catalog/ HTTP/1.1" 200 11545
+INFO 2026-09-29 01:12:29,191 log 23868 16360 "GET / HTTP/1.1" 200 7150
+INFO 2026-09-29 01:12:30,769 log 23868 16360 "GET /about/ HTTP/1.1" 200 8621
+WARNING 2026-09-29 01:12:30,820 log 23868 8384 "GET /static/images/logos/about_sara.png HTTP/1.1" 404 2061
+WARNING 2026-09-29 01:12:30,820 log 23868 16360 "GET /static/images/logos/about_ali.png HTTP/1.1" 404 2058
+WARNING 2026-09-29 01:12:30,855 log 23868 16516 "GET /static/images/logos/about_maryam.png HTTP/1.1" 404 2067
+WARNING 2026-09-29 01:12:30,855 log 23868 13652 "GET /static/images/logos/about_omid.png HTTP/1.1" 404 2061
+WARNING 2026-09-29 01:12:38,297 log 23868 23484 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7263
+INFO 2026-10-01 03:21:59,834 autoreload 4340 19352 Watching for file changes with StatReloader
+INFO 2026-10-01 03:22:01,405 log 4340 18908 "GET /login/ HTTP/1.1" 200 9197
+INFO 2026-10-01 03:22:01,504 log 4340 18908 "GET /static/css/custom.css HTTP/1.1" 200 3427
+WARNING 2026-10-01 03:22:04,932 log 4340 18908 "GET /favicon.ico HTTP/1.1" 404 7152
+INFO 2026-10-01 03:26:06,324 log 4340 11496 "GET /login/ HTTP/1.1" 200 9197
+INFO 2026-10-01 03:26:06,349 log 4340 11496 "GET /static/css/custom.css HTTP/1.1" 200 3427
+WARNING 2026-10-01 03:26:09,888 log 4340 11496 "GET /favicon.ico HTTP/1.1" 404 7152
+INFO 2026-10-01 03:27:50,895 autoreload 9176 6820 Watching for file changes with StatReloader
