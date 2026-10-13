@@ -1,1 +1,25 @@
-Django>=5.2,<6.0
+# Core
+Django>=6.1,<6.2
+djangorestframework==3.18.1
+djangorestframework-simplejwt==5.5.1
+python-decouple==3.8
+pyotp==2.10.0
+drf-spectacular==0.30.0
+django-cors-headers==4.9.0
+django-csp==4.0
+django-filter==26.1
+django-crispy-forms==2.7
+crispy-tailwind==1.0.3
+argon2-cffi==25.1.0
+Pillow==12.3.0
+psycopg2-binary==2.9.10
+gunicorn==23.0.0
+redis==5.2.1
+
+# Dev/CI
+black==26.5.1
+flake8==7.4.1
+isort==9.0.2
+pytest==9.1.1
+pytest-django==4.14.0
+pytest-cov==7.1.0
