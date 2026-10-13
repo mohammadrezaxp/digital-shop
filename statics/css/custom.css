@@ -120,6 +120,86 @@
   .mt-unit { margin-top: 0.5rem; }
 }
 
+/* About page specific styles (from Framer reference) */
+.ambient-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: #f7f8f8;
+}
+.ambient-bg::before {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 70%;
+    height: 70%;
+    background: rgba(73, 75, 214, 0.08);
+    border-radius: 50%;
+    filter: blur(120px);
+}
+.ambient-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    right: -10%;
+    width: 60%;
+    height: 60%;
+    background: rgba(0, 203, 230, 0.06);
+    border-radius: 50%;
+    filter: blur(150px);
+}
+
+/* White card with hover effect */
+.white-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 40px -10px rgba(73, 75, 214, 0.08);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.white-card:hover {
+    box-shadow: 0 20px 40px -10px rgba(73, 75, 214, 0.15);
+    transform: translateY(-8px);
+}
+
+/* Glow button */
+.glow-button {
+    background: linear-gradient(90deg, #494bd6, #00cbe6);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.glow-button:hover {
+    box-shadow: 0 10px 20px rgba(0, 203, 230, 0.3);
+    transform: scale(1.02);
+}
+
+/* Input focus */
+.input-light:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 2px #494bd6, 0 0 15px rgba(73, 75, 214, 0.1);
+    outline: none;
+}
+
+/* Typography classes matching reference */
+.font-display-lg { font-family: 'Vazirmatn', sans-serif; font-size: 48px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 800; }
+.font-display-lg-mobile { font-family: 'Vazirmatn', sans-serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; font-weight: 800; }
+.font-headline-md { font-family: 'Vazirmatn', sans-serif; font-size: 24px; line-height: 1.3; letter-spacing: 0.02em; font-weight: 700; }
+.font-body-md { font-family: 'Vazirmatn', sans-serif; font-size: 16px; line-height: 1.6; font-weight: 400; }
+.font-label-mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.0; letter-spacing: 0.1em; font-weight: 500; }
+
+/* Spacing tokens */
+.margin-mobile { margin: 16px; }
+.margin-desktop { margin: 48px; }
+.stack-gap { gap: 32px; }
+.unit { padding: 8px; }
+.gutter { gap: 24px; }
+.container-max { max-width: 1280px; }
+
+@media (max-width: 768px) {
+    .font-display-lg { font-size: 32px; }
+    .font-headline-md { font-size: 20px; }
+}
+
 @keyframes float {
   0%, 100% { transform: translate(0, 0); }
   25% { transform: translate(20px, 20px); }

@@ -1,3 +1,6 @@
+import os
+
+from django.conf import settings
 from django.utils import timezone
 from rest_framework import serializers
 
@@ -100,6 +103,8 @@ class ProductListSerializer(serializers.ModelSerializer):
     category_slug = serializers.CharField(source="category.slug", read_only=True)
     discount_percent = serializers.SerializerMethodField()
     is_in_stock = serializers.BooleanField(read_only=True)
+    logo = serializers.SerializerMethodField()
+    thumbnail = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
@@ -122,6 +127,21 @@ class ProductListSerializer(serializers.ModelSerializer):
             "is_featured",
             "sold_count",
         ]
+
+    # Product.logo may point at static/ (sample data) or MEDIA_ROOT (admin
+    # upload) — ImageField.url would blindly prefix MEDIA_URL and 404 the former.
+    def _image_url(self, field):
+        if not field:
+            return None
+        if os.path.exists(os.path.join(settings.MEDIA_ROOT, field.name)):
+            return field.url
+        return f"{settings.STATIC_URL}{field.name}"
+
+    def get_logo(self, obj):
+        return self._image_url(obj.logo)
+
+    def get_thumbnail(self, obj):
+        return self._image_url(obj.thumbnail)
 
     def get_discount_percent(self, obj):
         if obj.original_price and obj.original_price > obj.price:

@@ -1,6 +1,6 @@
 # Digital Shop — Django REST API
 
-A production-ready Django REST API backend for a digital goods marketplace (gift cards, subscriptions, software licenses, VPN, streaming). Built with Django 5.2+, DRF 3.18+, JWT authentication, 2FA, and comprehensive security hardening.
+A professional portfolio Django REST API backend for a digital goods marketplace (gift cards, subscriptions, software licenses, VPN, streaming). Built with Django 6.1+, DRF 3.18+, JWT authentication, 2FA, and comprehensive security hardening.
 
 ## Features
 

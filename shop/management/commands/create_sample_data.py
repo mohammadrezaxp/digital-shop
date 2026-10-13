@@ -71,6 +71,7 @@ class Command(BaseCommand):
             {
                 "name": "Steam Gift Card",
                 "slug": "steam-gift-card",
+                "logo_name": "steam",
                 "category": gaming,
                 "type": "gift_card",
                 "status": "active",
@@ -89,6 +90,7 @@ class Command(BaseCommand):
             {
                 "name": "PlayStation Plus",
                 "slug": "playstation-plus",
+                "logo_name": "playstation",
                 "category": gaming,
                 "type": "subscription",
                 "status": "active",
@@ -110,6 +112,7 @@ class Command(BaseCommand):
             {
                 "name": "Xbox Game Pass Ultimate",
                 "slug": "xbox-game-pass",
+                "logo_name": "xbox",
                 "category": gaming,
                 "type": "subscription",
                 "status": "active",
@@ -135,6 +138,7 @@ class Command(BaseCommand):
             {
                 "name": "ChatGPT Plus",
                 "slug": "chatgpt-plus",
+                "logo_name": "chatgpt",
                 "category": ai,
                 "type": "subscription",
                 "status": "active",
@@ -156,6 +160,7 @@ class Command(BaseCommand):
             {
                 "name": "Claude Pro",
                 "slug": "claude-pro",
+                "logo_name": "claude",
                 "category": ai,
                 "type": "subscription",
                 "status": "active",
@@ -177,6 +182,7 @@ class Command(BaseCommand):
             {
                 "name": "Midjourney Subscription",
                 "slug": "midjourney",
+                "logo_name": "midjourney",
                 "category": ai,
                 "type": "subscription",
                 "status": "active",
@@ -198,6 +204,7 @@ class Command(BaseCommand):
             {
                 "name": "NordVPN",
                 "slug": "nordvpn",
+                "logo_name": "nordvpn",
                 "category": vpn,
                 "type": "subscription",
                 "status": "active",
@@ -218,6 +225,7 @@ class Command(BaseCommand):
             {
                 "name": "ExpressVPN",
                 "slug": "expressvpn",
+                "logo_name": "expressvpn",
                 "category": vpn,
                 "type": "subscription",
                 "status": "active",
@@ -234,6 +242,7 @@ class Command(BaseCommand):
             {
                 "name": "Netflix Premium",
                 "slug": "netflix-premium",
+                "logo_name": "netflix",
                 "category": streaming,
                 "type": "subscription",
                 "status": "active",
@@ -255,6 +264,7 @@ class Command(BaseCommand):
             {
                 "name": "Spotify Premium",
                 "slug": "spotify-premium",
+                "logo_name": "spotify",
                 "category": streaming,
                 "type": "subscription",
                 "status": "active",
@@ -275,6 +285,7 @@ class Command(BaseCommand):
             {
                 "name": "YouTube Premium",
                 "slug": "youtube-premium",
+                "logo_name": "youtube",
                 "category": streaming,
                 "type": "subscription",
                 "status": "active",
@@ -338,6 +349,9 @@ class Command(BaseCommand):
 
         for prod_data in products_data:
             variants_data = prod_data.pop("variants", None)
+            logo_name = prod_data.pop("logo_name", None)
+            if logo_name:
+                prod_data["logo"] = f"images/logos/{logo_name}.png"
             product, created = Product.objects.get_or_create(
                 slug=prod_data["slug"], defaults=prod_data
             )

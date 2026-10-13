@@ -3,97 +3,154 @@
 
 {% block title %}ورود - دیجیتال شاپ{% endblock %}
 
+{% block extra_head %}
+<style>
+  /* Floating Card Animation */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Glassmorphism utility classes - Light Theme */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+  }
+  .glass-panel:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 82, 255, 0.1);
+  }
+
+  /* Input styling */
+  .cyber-input:focus {
+    outline: none;
+    border-color: #0052FF;
+    box-shadow: 0 0 0 2px rgba(0, 82, 255, 0.2);
+  }
+
+  /* Button Glow */
+  .btn-glow:hover {
+    box-shadow: 0 8px 25px rgba(0, 82, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Springy transition */
+  .spring-transition {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+</style>
+{% endblock %}
+
 {% block content %}
-<!-- Brand / Logo Area -->
-<div class="text-center mb-stack-gap animate-float" style="animation-duration: 8s;">
-<div class="inline-block p-4 rounded-full glass-panel mb-4">
-<span class="material-symbols-outlined text-display-lg-mobile text-primary" style="font-variation-settings: 'FILL' 1;">
-                    storefront
-                </span>
-</div>
-<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary font-bold tracking-tight">
-                دیجیتال شاپ
-            </h1>
-<p class="font-body-md text-body-md text-on-surface-variant mt-2">
-                ورود به دنیای تکنولوژی
-            </p>
-</div>
-<!-- Auth Card -->
-<div class="glass-panel rounded-xl p-8 spring-transition w-full shadow-lg relative overflow-hidden group">
-<!-- Subtle top accent line -->
-<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
-<h2 class="font-headline-md text-headline-md text-on-surface mb-6 text-center font-bold">
-                ورود به حساب کاربری
-            </h2>
-<form class="space-y-6" onsubmit="handleLogin(event)">
-<!-- Email Field -->
-<div>
-<label class="block font-body-md text-body-md text-on-surface-variant mb-2" for="email">ایمیل</label>
-<div class="relative">
-<span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-<span class="material-symbols-outlined text-outline">mail</span>
-</span>
-<input class="cyber-input w-full bg-surface-container-high border border-outline-variant rounded-lg py-3 pl-4 pr-10 text-on-surface font-body-md text-body-md placeholder-outline-variant spring-transition" dir="ltr" id="email" name="email" placeholder="ایمیل خود را وارد کنید" type="email"/>
-</div>
-</div>
-<!-- Password Field -->
-<div>
-<div class="flex justify-between items-center mb-2">
-<label class="block font-body-md text-body-md text-on-surface-variant" for="password">رمز عبور</label>
-<a class="font-label-mono text-label-mono text-secondary hover:text-secondary-fixed transition-colors" href="#">فراموشی رمز عبور؟</a>
-</div>
-<div class="relative">
-<span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-<span class="material-symbols-outlined text-outline">lock</span>
-</span>
-<input class="cyber-input w-full bg-surface-container-high border border-outline-variant rounded-lg py-3 pl-10 pr-10 text-on-surface font-body-md text-body-md placeholder-outline-variant spring-transition" dir="ltr" id="password" name="password" placeholder="••••••••" type="password"/>
-<button class="absolute inset-y-0 left-0 flex items-center pl-3 text-outline hover:text-on-surface transition-colors" type="button">
-<span class="material-symbols-outlined">visibility_off</span>
-</button>
-</div>
-</div>
-<!-- Remember Me & Submit -->
-<div class="flex items-center justify-between mt-6">
-<label class="flex items-center space-x-2 space-x-reverse cursor-pointer group">
-<div class="relative flex items-center justify-center w-5 h-5 rounded border border-outline-variant group-hover:border-primary transition-colors bg-surface-container">
-<input class="peer sr-only" type="checkbox"/>
-<span class="material-symbols-outlined text-primary text-sm opacity-0 peer-checked:opacity-100 transition-opacity absolute pointer-events-none" style="font-variation-settings: 'FILL' 1;">check</span>
-</div>
-<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">مرا به خاطر بسپار</span>
-</label>
-</div>
-<!-- Submit Button -->
-<button class="w-full py-4 mt-6 rounded-lg bg-gradient-to-r from-primary to-inverse-primary text-on-primary font-headline-md text-headline-md font-bold spring-transition btn-glow flex justify-center items-center gap-2" type="submit">
-<span>ورود به حساب</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">login</span>
-</button>
-</form>
-<!-- Divider -->
-<div class="relative flex items-center py-6">
-<div class="flex-grow border-t border-outline-variant/30"></div>
-<span class="flex-shrink-0 mx-4 font-label-mono text-label-mono text-outline-variant">یا</span>
-<div class="flex-grow border-t border-outline-variant/30"></div>
-</div>
-<!-- Social Login (Optional addition for modern feel) -->
-<div class="grid grid-cols-2 gap-4 mb-6">
-<button class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-surface-container-high border border-outline-variant/50 hover:bg-surface-variant hover:border-outline transition-all duration-300">
-<span class="font-body-md text-body-md text-on-surface">Google</span>
-</button>
-<button class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-surface-container-high border border-outline-variant/50 hover:bg-surface-variant hover:border-outline transition-all duration-300">
-<span class="font-body-md text-body-md text-on-surface">Apple</span>
-</button>
-</div>
-<!-- Sign Up Link -->
-<p class="text-center font-body-md text-body-md text-on-surface-variant mt-4">
-                حساب کاربری ندارید؟
-                <a class="text-primary font-bold hover:text-primary-fixed transition-colors underline decoration-primary/30 underline-offset-4 hover:decoration-primary" href="{% url 'shop:signup' %}">ثبت‌نام</a>
-</p>
-</div>
-<!-- Back to Home Link (Subtle) -->
-<div class="text-center mt-8">
-<a class="inline-flex items-center gap-2 font-body-md text-body-md text-outline hover:text-on-surface transition-colors group" href="{% url 'shop:home' %}">
-<span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform rtl:group-hover:translate-x-1">arrow_back</span>
-                بازگشت به صفحه اصلی
-            </a>
+<!-- Decorative Background Elements -->
+<div class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-200 opacity-40 blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-300 opacity-30 blur-[120px] pointer-events-none"></div>
+<!-- Main Content Container -->
+<div class="w-full md:w-1/2 md:ml-auto px-margin-mobile md:px-8 z-10 relative min-h-[calc(100vh-80px)] flex flex-col items-center justify-center">
+  <!-- Brand / Logo Area -->
+  <div class="text-center mb-stack-gap animate-float" style="animation-duration: 8s;">
+    <div class="inline-block p-4 rounded-full glass-panel mb-4">
+      <span class="material-symbols-outlined text-display-lg-mobile text-brand-blue" style="font-variation-settings: 'FILL' 1; font-size: 3rem;">storefront</span>
+    </div>
+    <h1 class="font-display-lg-mobile text-display-lg-mobile text-brand-dark font-bold tracking-tight">
+      دیجیتال شاپ
+    </h1>
+    <p class="font-body-md text-body-md text-brand-gray mt-2">
+      ورود به دنیای تکنولوژی
+    </p>
+  </div>
+  <!-- Auth Card -->
+  <div class="glass-panel rounded-xl p-8 spring-transition w-full relative overflow-hidden group">
+    <!-- Subtle top accent line -->
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-brand-blue opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+    <h2 class="font-headline-md text-headline-md text-brand-dark mb-6 text-center font-bold">
+      ورود به حساب کاربری
+    </h2>
+    <form class="space-y-6" onsubmit="handleLogin(event)">
+      <!-- Email Field -->
+      <div>
+        <label class="block font-body-md text-body-md text-brand-gray mb-2" for="email">ایمیل</label>
+        <div class="relative">
+          <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <span class="material-symbols-outlined text-gray-400">mail</span>
+          </span>
+          <input class="cyber-input w-full bg-gray-50 border border-gray-200 rounded-lg py-3 pl-4 pr-10 text-brand-dark font-body-md text-body-md placeholder-gray-400 spring-transition" dir="ltr" id="email" name="email" placeholder="ایمیل خود را وارد کنید" type="email"/>
+        </div>
+      </div>
+      <!-- Password Field -->
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <label class="block font-body-md text-body-md text-brand-gray" for="password">رمز عبور</label>
+          <a class="font-label-mono text-label-mono text-brand-blue hover:text-blue-700 transition-colors" href="#">فراموشی رمز عبور؟</a>
+        </div>
+        <div class="relative">
+          <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <span class="material-symbols-outlined text-gray-400">lock</span>
+          </span>
+          <input class="cyber-input w-full bg-gray-50 border border-gray-200 rounded-lg py-3 pl-10 pr-10 text-brand-dark font-body-md text-body-md placeholder-gray-400 spring-transition" dir="ltr" id="password" name="password" placeholder="••••••••" type="password"/>
+          <button class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 hover:text-brand-dark transition-colors" type="button">
+            <span class="material-symbols-outlined">visibility_off</span>
+          </button>
+        </div>
+      </div>
+      <!-- Remember Me & Submit -->
+      <div class="flex items-center justify-between mt-6">
+        <label class="flex items-center space-x-2 space-x-reverse cursor-pointer group">
+          <div class="relative flex items-center justify-center w-5 h-5 rounded border border-gray-300 group-hover:border-brand-blue transition-colors bg-white">
+            <input class="peer sr-only" type="checkbox" name="remember"/>
+            <span class="material-symbols-outlined text-brand-blue text-sm opacity-0 peer-checked:opacity-100 transition-opacity absolute pointer-events-none" style="font-variation-settings: 'FILL' 1;">check</span>
+          </div>
+          <span class="font-body-md text-body-md text-brand-gray group-hover:text-brand-dark transition-colors">مرا به خاطر بسپار</span>
+        </label>
+      </div>
+      <!-- Submit Button -->
+      <button class="w-full py-4 mt-6 rounded-lg bg-gradient-to-r from-blue-600 to-brand-blue text-white font-headline-md text-headline-md font-bold spring-transition btn-glow flex justify-center items-center gap-2 shadow-lg shadow-blue-500/30" type="submit">
+        <span>ورود به حساب</span>
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">login</span>
+      </button>
+    </form>
+    <!-- Divider -->
+    <div class="relative flex items-center py-6">
+      <div class="flex-grow border-t border-gray-200"></div>
+      <span class="flex-shrink-0 mx-4 font-label-mono text-label-mono text-gray-400">یا</span>
+      <div class="flex-grow border-t border-gray-200"></div>
+    </div>
+    <!-- Social Login -->
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <button class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-white border border-gray-200 hover:bg-gray-50 transition-all duration-300 shadow-sm" type="button">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+        </svg>
+        <span class="font-body-md text-body-md text-brand-dark font-medium">Google</span>
+      </button>
+      <button class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-white border border-gray-200 hover:bg-gray-50 transition-all duration-300 shadow-sm" type="button">
+        <svg class="w-5 h-5" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" fill="currentColor"></path>
+        </svg>
+        <span class="font-body-md text-body-md text-brand-dark font-medium">Apple</span>
+      </button>
+    </div>
+    <!-- Sign Up Link -->
+    <p class="text-center font-body-md text-body-md text-brand-gray mt-4">
+      حساب کاربری ندارید؟
+      <a class="text-brand-blue font-bold hover:text-blue-700 transition-colors underline decoration-brand-blue/30 underline-offset-4 hover:decoration-brand-blue" href="{% url 'shop:signup' %}">ثبت‌نام</a>
+    </p>
+  </div>
+  <!-- Back to Home Link (Subtle) -->
+  <div class="text-center mt-8">
+    <a class="inline-flex items-center gap-2 font-body-md text-body-md text-gray-500 hover:text-brand-dark transition-colors group" href="{% url 'shop:home' %}">
+      <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform rtl:group-hover:translate-x-1">arrow_back</span>
+      بازگشت به صفحه اصلی
+    </a>
+  </div>
 </div>
 {% endblock %}

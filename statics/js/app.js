@@ -131,15 +131,15 @@ async function loadProducts() {
             <article class="bg-white/80 backdrop-blur-sm rounded-lg p-8 flex flex-col gap-6 relative overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300 border border-outline-variant/10">
                 <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-colors duration-500"></div>
                 <div class="flex justify-between items-start">
-                    <img alt="${product.name}" class="w-16 h-16 rounded-full object-cover border border-outline-variant/20 shadow-md group-hover:scale-110 transition-transform duration-500" src="${product.image || '/static/images/logos/steam.png'}" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);"/>
-                    <span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-mono text-label-mono border border-outline-variant/10">${product.category?.name || 'محصول'}</span>
+                    <img alt="${product.name}" class="w-16 h-16 rounded-full object-cover border border-outline-variant/20 shadow-md group-hover:scale-110 transition-transform duration-500" src="${product.logo || product.thumbnail || '/static/images/logos/steam.png'}" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);"/>
+                    <span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-mono text-label-mono border border-outline-variant/10">${product.category_name || 'محصول'}</span>
                 </div>
                 <div>
                     <h3 class="font-headline-md text-headline-md text-surface mb-2">${product.name}</h3>
-                    <p class="font-body-md text-body-md text-surface/60 line-clamp-2">${product.description || ''}</p>
+                    <p class="font-body-md text-body-md text-surface/60 line-clamp-2">${product.short_description || ''}</p>
                 </div>
                 <div class="mt-auto pt-4 border-t border-outline-variant/20 flex justify-between items-center">
-                    <span class="font-headline-md text-headline-md text-secondary text-sm md:text-base">از ${product.price?.toLocaleString('fa-IR') || '۰'} تومان</span>
+                    <span class="font-headline-md text-headline-md text-secondary text-sm md:text-base">از ${Number(product.price || 0).toLocaleString('fa-IR')} تومان</span>
                     <button class="btn-glow px-4 md:px-6 py-2 rounded-lg text-on-primary-fixed font-bold font-body-md text-body-md text-sm md:text-base" onclick="addToCart(${product.id})">خرید</button>
                 </div>
             </article>
@@ -193,13 +193,13 @@ async function loadProfile() {
 
 document.addEventListener('DOMContentLoaded', () => {
     // Login form
-    const loginForm = document.querySelector('form[action="/login/"]');
+    const loginForm = document.querySelector('form[onsubmit*="handleLogin"]');
     if (loginForm) {
         loginForm.addEventListener('submit', handleLogin);
     }
-    
+
     // Signup form
-    const signupForm = document.querySelector('form[action="/signup/"]');
+    const signupForm = document.querySelector('form[onsubmit*="handleSignup"]');
     if (signupForm) {
         signupForm.addEventListener('submit', handleSignup);
     }
