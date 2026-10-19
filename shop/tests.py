@@ -11,13 +11,27 @@ from rest_framework import status
 from rest_framework.test import APIClient
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from shop.models import (Address, Category, Coupon, CouponUsage, LoginAttempt,
-                         Notification, Order, OrderItem, Product,
-                         ProductVariant, SiteSettings, Subscription, Wallet,
-                         WalletTransaction)
-from shop.validators import (NoCommonPatternsValidator,
-                             NoPersonalInfoValidator,
-                             SpecialCharacterValidator)
+from shop.models import (
+    Address,
+    Category,
+    Coupon,
+    CouponUsage,
+    LoginAttempt,
+    Notification,
+    Order,
+    OrderItem,
+    Product,
+    ProductVariant,
+    SiteSettings,
+    Subscription,
+    Wallet,
+    WalletTransaction,
+)
+from shop.validators import (
+    NoCommonPatternsValidator,
+    NoPersonalInfoValidator,
+    SpecialCharacterValidator,
+)
 
 User = get_user_model()
 

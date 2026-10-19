@@ -630,3 +630,10 @@ SPECTACULAR_SETTINGS = {
 
 # Site settings (for dynamic config)
 SITE_ID = 1
+
+CELERY_BEAT_SCHEDULE = {
+    "expire-subscriptions-hourly": {
+        "task": "shop.tasks.expire_subscriptions",
+        "schedule": 3600.0,
+    },
+}

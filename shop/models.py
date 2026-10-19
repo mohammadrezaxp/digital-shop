@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser
-from django.db import models
+from django.core.exceptions import ValidationError
+from django.db import models, transaction
+from django.db.models import F
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
@@ -44,6 +46,23 @@ class User(AbstractUser):
         if self.locked_until and self.locked_until > timezone.now():
             return True
         return False
+
+    def consume_backup_code(self, code):
+        with transaction.atomic():
+            locked = type(self).objects.select_for_update().get(pk=self.pk)
+            if code not in locked.backup_codes:
+                return False
+            codes = list(locked.backup_codes)
+            codes.remove(code)
+            # Compare-and-swap protects one-time use even on SQLite.
+            consumed = (
+                type(self)
+                .objects.filter(pk=self.pk, backup_codes=locked.backup_codes)
+                .update(backup_codes=codes)
+            )
+            if consumed:
+                self.backup_codes = codes
+            return bool(consumed)
 
     def record_failed_login(self):
         self.failed_login_attempts += 1
@@ -352,6 +371,13 @@ class Subscription(models.Model):
         CANCELLED = "cancelled", _("لغو شده")
         PENDING = "pending", _("در انتظار فعال‌سازی")
 
+    order_item = models.OneToOneField(
+        "OrderItem",
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        related_name="subscription",
+    )
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -478,6 +504,36 @@ class WalletTransaction(models.Model):
             models.Index(fields=["reference_id"]),
         ]
 
+    def save(self, *args, **kwargs):
+        with transaction.atomic():
+            previous = (
+                type(self).objects.select_for_update().filter(pk=self.pk).first()
+                if self.pk
+                else None
+            )
+            if (
+                self.amount <= 0
+                or self.type not in self.Type.values
+                or self.status not in self.Status.values
+            ):
+                raise ValidationError(
+                    "A valid positive wallet transaction is required."
+                )
+            if previous and previous.status == self.Status.COMPLETED:
+                if (
+                    previous.amount,
+                    previous.type,
+                    previous.wallet_id,
+                    previous.status,
+                ) != (self.amount, self.type, self.wallet_id, self.status):
+                    raise ValidationError(
+                        "Completed wallet transactions cannot be altered; create a refund."
+                    )
+            self._apply_balance = self.status == self.Status.COMPLETED and (
+                previous is None or previous.status != self.Status.COMPLETED
+            )
+            super().save(*args, **kwargs)
+
     def __str__(self):
         return (
             f"{self.wallet.user.username} - {self.get_type_display()} - {self.amount:,}"
@@ -551,25 +607,31 @@ class Coupon(models.Model):
             >= self.usage_limit_per_user
         ):
             return False, "شما از حد استفاده از این کوپن گذشته‌اید"
-        if (
-            self.applicable_categories.exists()
-            and not self.applicable_categories.filter(products__in=[]).exists()
-        ):
-            pass  # Skip category check if no categories specified
-        if (
-            self.applicable_products.exists()
-            and not self.applicable_products.filter(id__in=[]).exists()
-        ):
-            pass  # Skip product check if no products specified
         return True, ""
+
+    def eligible_subtotal(self, items):
+        categories = set(self.applicable_categories.values_list("pk", flat=True))
+        products = set(self.applicable_products.values_list("pk", flat=True))
+        return sum(
+            (
+                item["total_price"]
+                for item in items
+                if (not categories and not products)
+                or item["product"].pk in products
+                or item["product"].category_id in categories
+            ),
+            0,
+        )
 
     def calculate_discount(self, amount):
         if self.discount_type == self.DiscountType.PERCENT:
             discount = amount * self.discount_value / 100
             if self.max_discount_amount and discount > self.max_discount_amount:
-                return self.max_discount_amount
-            return discount
-        return min(self.discount_value, amount)
+                return max(0, min(amount, self.max_discount_amount))
+            return max(
+                0, min(amount, discount.quantize(__import__("decimal").Decimal("1")))
+            )
+        return max(0, min(self.discount_value, amount))
 
 
 class CouponUsage(models.Model):

@@ -1,10 +1,23 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import (Address, Category, Coupon, CouponUsage, LoginAttempt,
-                     Notification, Order, OrderItem, Product, ProductVariant,
-                     SiteSettings, Subscription, User, Wallet,
-                     WalletTransaction)
+from .models import (
+    Address,
+    Category,
+    Coupon,
+    CouponUsage,
+    LoginAttempt,
+    Notification,
+    Order,
+    OrderItem,
+    Product,
+    ProductVariant,
+    SiteSettings,
+    Subscription,
+    User,
+    Wallet,
+    WalletTransaction,
+)
 
 
 @admin.register(User)

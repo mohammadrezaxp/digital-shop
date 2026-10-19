@@ -1,35 +1,63 @@
 import os
 from decimal import Decimal
 
+from django.contrib.auth import authenticate
 from django.db import transaction
 from django.db.models import Count, F, Q, Sum
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics, serializers, status, viewsets
 from rest_framework.decorators import action, api_view, permission_classes
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.throttling import (AnonRateThrottle, ScopedRateThrottle,
-                                       UserRateThrottle)
+from rest_framework.throttling import (
+    AnonRateThrottle,
+    ScopedRateThrottle,
+    UserRateThrottle,
+)
 from rest_framework.views import APIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .models import (Address, Category, Coupon, CouponUsage, LoginAttempt,
-                     Notification, Order, OrderItem, Product, ProductVariant,
-                     SiteSettings, Subscription, User, Wallet,
-                     WalletTransaction)
-from .serializers import (AddressSerializer, CategorySerializer,
-                          CouponSerializer, CouponValidateSerializer,
-                          NotificationSerializer, OrderCreateSerializer,
-                          OrderItemSerializer, OrderSerializer,
-                          ProductDetailSerializer, ProductListSerializer,
-                          ProductVariantSerializer, SiteSettingsSerializer,
-                          SubscriptionSerializer, UserProfileSerializer,
-                          UserSerializer, WalletSerializer,
-                          WalletTransactionSerializer)
+from .models import (
+    Address,
+    Category,
+    Coupon,
+    CouponUsage,
+    LoginAttempt,
+    Notification,
+    Order,
+    OrderItem,
+    Product,
+    ProductVariant,
+    SiteSettings,
+    Subscription,
+    User,
+    Wallet,
+    WalletTransaction,
+)
+from .serializers import (
+    AddressSerializer,
+    CategorySerializer,
+    CouponSerializer,
+    CouponValidateSerializer,
+    NotificationSerializer,
+    OrderCreateSerializer,
+    OrderItemSerializer,
+    OrderSerializer,
+    ProductDetailSerializer,
+    ProductListSerializer,
+    ProductVariantSerializer,
+    SiteSettingsSerializer,
+    SubscriptionSerializer,
+    UserProfileSerializer,
+    UserSerializer,
+    WalletSerializer,
+    WalletTransactionSerializer,
+)
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -94,7 +122,16 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         # Call parent validate (handles authentication)
         try:
-            data = super().validate(attrs)
+            self.user = authenticate(
+                request=request,
+                username=attrs.get("username"),
+                password=attrs.get("password"),
+            )
+            if self.user is None or not self.user.is_active:
+                raise AuthenticationFailed(
+                    "No active account found with the given credentials"
+                )
+            data = {}
         except Exception as e:
             # Log failed attempt
             if user:
@@ -107,7 +144,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
                         request.META.get("HTTP_USER_AGENT", "") if request else ""
                     ),
                     status=LoginAttempt.Status.FAILED,
-                    failure_reason=str(e),
+                    failure_reason="Invalid credentials",
                 )
             else:
                 # Log attempt for non-existent user (but don't reveal user existence)
@@ -148,9 +185,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
                 and self.user.backup_codes
                 and two_factor_code in self.user.backup_codes
             ):
-                self.user.backup_codes.remove(two_factor_code)
-                self.user.save(update_fields=["backup_codes"])
-                verified = True
+                verified = self.user.consume_backup_code(two_factor_code)
 
             if not verified:
                 # Log failed 2FA attempt
@@ -183,27 +218,30 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
                 status=LoginAttempt.Status.SUCCESS,
             )
 
+        refresh = self.get_token(self.user)
+        data["refresh"] = str(refresh)
+        data["access"] = str(refresh.access_token)
         data["user"] = UserSerializer(self.user).data
         return data
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
-    throttle_classes = [AnonRateThrottle]
+    throttle_classes = [ScopedRateThrottle]
     throttle_scope = "login"
 
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
-    throttle_classes = [AnonRateThrottle]
+    throttle_classes = [ScopedRateThrottle]
     throttle_scope = "register"
 
     def post(self, request):
-        serializer = UserSerializer(data=request.data)
+        from .serializers import RegisterSerializer
+
+        serializer = RegisterSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        user.set_password(request.data["password"])
-        user.save()
         Wallet.objects.get_or_create(user=user)
         return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
 
@@ -311,143 +349,46 @@ class OrderViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         return self._create_order(request.user, serializer.validated_data)
 
-    @transaction.atomic
     def _create_order(self, user, data):
-        items_data = data["items"]
-        coupon_code = data.get("coupon_code", "").strip()
-        payment_method = data["payment_method"]
+        from .services import create_order
 
-        product_ids = [item["product_id"] for item in items_data]
-        variant_ids = [
-            item.get("variant_id") for item in items_data if item.get("variant_id")
-        ]
-
-        products = Product.objects.in_bulk(product_ids)
-        variants = ProductVariant.objects.in_bulk(variant_ids) if variant_ids else {}
-
-        subtotal = Decimal("0")
-        order_items = []
-
-        for item_data in items_data:
-            product = products.get(item_data["product_id"])
-            if not product or product.status != Product.Status.ACTIVE:
-                return Response(
-                    {"error": f"محصول {item_data['product_id']} موجود نیست"},
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
-
-            variant = None
-            if item_data.get("variant_id"):
-                variant = variants.get(item_data["variant_id"])
-                if (
-                    not variant
-                    or variant.product_id != product.id
-                    or not variant.is_active
-                ):
-                    return Response(
-                        {"error": f"تنوع محصول معتبر نیست"},
-                        status=status.HTTP_400_BAD_REQUEST,
-                    )
-                unit_price = variant.price
-                if variant.stock < item_data.get("quantity", 1):
-                    return Response(
-                        {"error": f"موجودی تنوع {variant.name} کافی نیست"},
-                        status=status.HTTP_400_BAD_REQUEST,
-                    )
-            else:
-                unit_price = product.price
-                if product.stock < item_data.get("quantity", 1):
-                    return Response(
-                        {"error": f"موجودی {product.name} کافی نیست"},
-                        status=status.HTTP_400_BAD_REQUEST,
-                    )
-
-            quantity = item_data.get("quantity", 1)
-            total_price = unit_price * quantity
-            subtotal += total_price
-
-            order_items.append(
-                {
-                    "product": product,
-                    "variant": variant,
-                    "quantity": quantity,
-                    "unit_price": unit_price,
-                    "total_price": total_price,
-                }
-            )
-
-        discount = Decimal("0")
-        coupon = None
-        if coupon_code:
-            try:
-                coupon = Coupon.objects.get(code__iexact=coupon_code)
-                valid, msg = coupon.is_valid(user, subtotal)
-                if not valid:
-                    return Response({"error": msg}, status=status.HTTP_400_BAD_REQUEST)
-                discount = coupon.calculate_discount(subtotal)
-            except Coupon.DoesNotExist:
-                return Response(
-                    {"error": "کوپن یافت نشد"}, status=status.HTTP_400_BAD_REQUEST
-                )
-
-        tax = Decimal("0")
-        total = subtotal - discount + tax
-
-        order = Order.objects.create(
-            user=user,
-            status=Order.Status.PENDING,
-            payment_method=payment_method,
-            tracking_code=self._generate_tracking_code(),
-            subtotal=subtotal,
-            discount=discount,
-            tax=tax,
-            total=total,
-        )
-
-        for item_data in order_items:
-            OrderItem.objects.create(
-                order=order,
-                product=item_data["product"],
-                variant=item_data["variant"],
-                quantity=item_data["quantity"],
-                unit_price=item_data["unit_price"],
-                total_price=item_data["total_price"],
-            )
-            if item_data["variant"]:
-                item_data["variant"].stock -= item_data["quantity"]
-                item_data["variant"].save(update_fields=["stock"])
-            else:
-                item_data["product"].stock -= item_data["quantity"]
-                item_data["product"].sold_count += item_data["quantity"]
-                item_data["product"].save(update_fields=["stock", "sold_count"])
-
-        if coupon:
-            CouponUsage.objects.create(
-                coupon=coupon,
-                user=user,
-                order=order,
-                discount_amount=discount,
-            )
-            coupon.used_count += 1
-            coupon.save(update_fields=["used_count"])
-
+        order = create_order(user, data)
         return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
 
-    def _generate_tracking_code(self):
-        import uuid
+    def update(self, request, *args, **kwargs):
+        # Financial state is server-managed. Only unpaid payment method changes are editable.
+        with transaction.atomic():
+            order = self.get_queryset().select_for_update().get(pk=self.get_object().pk)
+            if order.status != Order.Status.PENDING or set(request.data) - {
+                "payment_method"
+            }:
+                raise serializers.ValidationError(
+                    "Only the payment method of a pending order can be edited."
+                )
+            method = request.data.get("payment_method", order.payment_method)
+            if method not in Order.PaymentMethod.values:
+                raise serializers.ValidationError("Invalid payment method.")
+            if method == Order.PaymentMethod.WALLET and method != order.payment_method:
+                from .services import pay_order
 
-        return f"DS{uuid.uuid4().hex[:10].upper()}"
+                pay_order(order)
+            else:
+                order.payment_method = method
+                order.save(update_fields=["payment_method"])
+        return Response(OrderSerializer(order).data)
+
+    def destroy(self, request, *args, **kwargs):
+        # Keep the financial record; the delete operation cancels the order.
+        from .services import cancel_order
+
+        cancel_order(self.get_object())
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     @action(detail=True, methods=["post"])
     def cancel(self, request, pk=None):
-        order = self.get_object()
-        if order.status not in [Order.Status.PENDING, Order.Status.PAID]:
-            return Response(
-                {"error": "سفارش قابل لغو نیست"}, status=status.HTTP_400_BAD_REQUEST
-            )
-        order.status = Order.Status.CANCELLED
-        order.save(update_fields=["status"])
-        return Response(OrderSerializer(order).data)
+        from .services import cancel_order
+
+        return Response(OrderSerializer(cancel_order(self.get_object())).data)
 
 
 class SubscriptionViewSet(viewsets.ReadOnlyModelViewSet):
@@ -499,14 +440,26 @@ class CouponValidateView(APIView):
                 status=status.HTTP_404_NOT_FOUND,
             )
 
-        cart_total = serializer.validated_data["cart_total"]
-        valid, msg = coupon.is_valid(request.user, cart_total)
-        if not valid:
-            return Response(
-                {"valid": False, "message": msg}, status=status.HTTP_400_BAD_REQUEST
-            )
+        from .services import coupon_discount, prepare_lines
 
-        discount = coupon.calculate_discount(cart_total)
+        items = serializer.validated_data.get("items")
+        if items:
+            lines = prepare_lines(items)
+            discount = coupon_discount(coupon, request.user, lines)
+        else:
+            if (
+                coupon.applicable_products.exists()
+                or coupon.applicable_categories.exists()
+            ):
+                raise serializers.ValidationError(
+                    "Items are required for a scoped coupon."
+                )
+            cart_total = serializer.validated_data["cart_total"]
+            valid, msg = coupon.is_valid(request.user, cart_total)
+            if not valid:
+                raise serializers.ValidationError(msg)
+            discount = coupon.calculate_discount(cart_total)
+
         return Response(
             {
                 "valid": True,
@@ -606,7 +559,7 @@ class DashboardStatsView(APIView):
                 "unread": user.notifications.filter(is_read=False).count(),
             },
             "recent_orders": OrderSerializer(
-                user.orders.select_related().prefetch_related("items__product")[:5],
+                user.orders.prefetch_related("items__product")[:5],
                 many=True,
             ).data,
             "active_subscriptions": SubscriptionSerializer(
@@ -664,6 +617,8 @@ class TwoFactorSetupView(APIView):
         user = request.user
         code = request.data.get("code", "").strip()
 
+        if user.two_factor_enabled:
+            raise serializers.ValidationError("2FA already enabled.")
         if not user.two_factor_secret:
             return Response(
                 {"error": "2FA setup not initiated"}, status=status.HTTP_400_BAD_REQUEST
@@ -711,8 +666,7 @@ class TwoFactorDisableView(APIView):
                 verified = True
 
         if not verified and user.backup_codes and code in user.backup_codes:
-            user.backup_codes.remove(code)
-            verified = True
+            verified = user.consume_backup_code(code)
 
         if not verified:
             return Response(
@@ -730,62 +684,22 @@ class TwoFactorDisableView(APIView):
 
 
 class TwoFactorVerifyView(APIView):
-    """Verify 2FA code during login (used after password auth)."""
+    """Compatibility endpoint: password and second factor are both required."""
 
     permission_classes = [AllowAny]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "login"
 
     def post(self, request):
-        username = request.data.get("username", "").strip()
-        code = request.data.get("code", "").strip()
-
-        if not username or not code:
-            return Response(
-                {"error": "Username and code required"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        try:
-            user = User.objects.get(username=username)
-        except User.DoesNotExist:
-            return Response(
-                {"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED
-            )
-
-        if not user.two_factor_enabled:
-            return Response(
-                {"error": "2FA not enabled for this account"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        # Verify TOTP
-        verified = False
-        if user.two_factor_secret:
-            totp = pyotp.TOTP(user.two_factor_secret)
-            if totp.verify(code, valid_window=1):
-                verified = True
-
-        # Verify backup code
-        if not verified and user.backup_codes and code in user.backup_codes:
-            user.backup_codes.remove(code)
-            user.save(update_fields=["backup_codes"])
-            verified = True
-
-        if not verified:
-            return Response(
-                {"error": "Invalid 2FA code"}, status=status.HTTP_401_UNAUTHORIZED
-            )
-
-        # Return tokens (like normal login)
-        from rest_framework_simplejwt.tokens import RefreshToken
-
-        refresh = RefreshToken.for_user(user)
-        return Response(
-            {
-                "access": str(refresh.access_token),
-                "refresh": str(refresh),
-                "user": UserSerializer(user).data,
-            }
+        payload = request.data.copy()
+        payload["two_factor_code"] = payload.get("two_factor_code") or payload.get(
+            "code", ""
         )
+        serializer = CustomTokenObtainPairSerializer(
+            data=payload, context={"request": request}
+        )
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.validated_data)
 
 
 class TwoFactorBackupCodesView(APIView):
@@ -810,8 +724,7 @@ class TwoFactorBackupCodesView(APIView):
                 verified = True
 
         if not verified and user.backup_codes and code in user.backup_codes:
-            user.backup_codes.remove(code)
-            verified = True
+            verified = user.consume_backup_code(code)
 
         if not verified:
             return Response(

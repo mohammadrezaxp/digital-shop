@@ -19,19 +19,36 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
-from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
-                                   SpectacularSwaggerView)
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView
 
-from shop.views import (AddressViewSet, CategoryViewSet, CouponValidateView,
-                        CustomTokenObtainPairView, DashboardStatsView,
-                        HealthCheckView, NotificationViewSet, OrderViewSet,
-                        ProductVariantViewSet, ProductViewSet, RegisterView,
-                        SiteSettingsView, SubscriptionViewSet,
-                        TwoFactorBackupCodesView, TwoFactorDisableView,
-                        TwoFactorSetupView, TwoFactorVerifyView,
-                        UserProfileView, WalletTransactionViewSet, WalletView)
+from shop.views import (
+    AddressViewSet,
+    CategoryViewSet,
+    CouponValidateView,
+    CustomTokenObtainPairView,
+    DashboardStatsView,
+    HealthCheckView,
+    NotificationViewSet,
+    OrderViewSet,
+    ProductVariantViewSet,
+    ProductViewSet,
+    RegisterView,
+    SiteSettingsView,
+    SubscriptionViewSet,
+    TwoFactorBackupCodesView,
+    TwoFactorDisableView,
+    TwoFactorSetupView,
+    TwoFactorVerifyView,
+    UserProfileView,
+    WalletTransactionViewSet,
+    WalletView,
+)
 
 router = DefaultRouter()
 router.register(r"categories", CategoryViewSet, basename="category")

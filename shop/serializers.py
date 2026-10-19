@@ -1,12 +1,27 @@
 import os
 
 from django.conf import settings
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError as DjangoValidationError
 from django.utils import timezone
 from rest_framework import serializers
 
-from .models import (Address, Category, Coupon, CouponUsage, Notification,
-                     Order, OrderItem, Product, ProductVariant, SiteSettings,
-                     Subscription, User, Wallet, WalletTransaction)
+from .models import (
+    Address,
+    Category,
+    Coupon,
+    CouponUsage,
+    Notification,
+    Order,
+    OrderItem,
+    Product,
+    ProductVariant,
+    SiteSettings,
+    Subscription,
+    User,
+    Wallet,
+    WalletTransaction,
+)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -25,6 +40,30 @@ class UserSerializer(serializers.ModelSerializer):
             "last_login",
         ]
         read_only_fields = ["id", "email_verified", "date_joined", "last_login"]
+
+
+class RegisterSerializer(UserSerializer):
+    password = serializers.CharField(write_only=True, trim_whitespace=False)
+    password2 = serializers.CharField(
+        write_only=True, required=False, trim_whitespace=False
+    )
+
+    class Meta(UserSerializer.Meta):
+        fields = UserSerializer.Meta.fields + ["password", "password2"]
+
+    def validate(self, attrs):
+        confirm = attrs.pop("password2", attrs["password"])
+        if confirm != attrs["password"]:
+            raise serializers.ValidationError({"password2": "Passwords do not match."})
+        candidate = User(**{k: v for k, v in attrs.items() if k != "password"})
+        try:
+            validate_password(attrs["password"], candidate)
+        except DjangoValidationError as exc:
+            raise serializers.ValidationError({"password": exc.messages})
+        return attrs
+
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -250,8 +289,32 @@ class OrderSerializer(serializers.ModelSerializer):
         ]
 
 
+class OrderLineSerializer(serializers.Serializer):
+    product_id = serializers.IntegerField(min_value=1, required=False)
+    variant_id = serializers.IntegerField(min_value=1, required=False)
+    variant = serializers.IntegerField(min_value=1, required=False, write_only=True)
+    quantity = serializers.IntegerField(min_value=1, max_value=1000, default=1)
+
+    def validate(self, attrs):
+        legacy = attrs.pop("variant", None)
+        if legacy is not None:
+            if attrs.get("variant_id", legacy) != legacy:
+                raise serializers.ValidationError("Conflicting variant identifiers.")
+            attrs["variant_id"] = legacy
+        if "product_id" not in attrs and "variant_id" in attrs:
+            try:
+                attrs["product_id"] = ProductVariant.objects.get(
+                    pk=attrs["variant_id"]
+                ).product_id
+            except ProductVariant.DoesNotExist:
+                raise serializers.ValidationError("Variant not found.")
+        if "product_id" not in attrs:
+            raise serializers.ValidationError("product_id or variant_id is required.")
+        return attrs
+
+
 class OrderCreateSerializer(serializers.Serializer):
-    items = serializers.ListField(child=serializers.DictField(), min_length=1)
+    items = OrderLineSerializer(many=True, allow_empty=False)
     coupon_code = serializers.CharField(required=False, allow_blank=True)
     payment_method = serializers.ChoiceField(choices=Order.PaymentMethod.choices)
 
@@ -313,17 +376,19 @@ class WalletTransactionSerializer(serializers.ModelSerializer):
 
 
 class CouponSerializer(serializers.ModelSerializer):
-    type_display = serializers.CharField(source="get_type_display", read_only=True)
+    type_display = serializers.CharField(
+        source="get_discount_type_display", read_only=True
+    )
 
     class Meta:
         model = Coupon
         fields = [
             "id",
             "code",
-            "type",
+            "discount_type",
             "type_display",
-            "value",
-            "max_discount",
+            "discount_value",
+            "max_discount_amount",
             "min_order_amount",
             "valid_from",
             "valid_until",
@@ -334,7 +399,7 @@ class CouponSerializer(serializers.ModelSerializer):
 class CouponValidateSerializer(serializers.Serializer):
     code = serializers.CharField()
     cart_total = serializers.DecimalField(max_digits=12, decimal_places=0, default=0)
-    items = serializers.ListField(child=serializers.DictField(), required=False)
+    items = OrderLineSerializer(many=True, required=False)
 
 
 class AddressSerializer(serializers.ModelSerializer):
@@ -342,6 +407,7 @@ class AddressSerializer(serializers.ModelSerializer):
         model = Address
         fields = [
             "id",
+            "title",
             "full_name",
             "phone",
             "province",

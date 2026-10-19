@@ -1,7 +1,13 @@
 from django.urls import path
 
-from .template_views import (about_view, catalog_view, home_view, login_view,
-                             profile_view, signup_view)
+from .template_views import (
+    about_view,
+    catalog_view,
+    home_view,
+    login_view,
+    profile_view,
+    signup_view,
+)
 
 app_name = "shop"
 
